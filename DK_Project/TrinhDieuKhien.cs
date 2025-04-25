@@ -53,6 +53,8 @@ namespace DK_Project
         List<ds_goicauhoishining> lsCauHoiVeDich = new List<ds_goicauhoishining>();
         private ds_goicaudiscovery cauHoiPhuCurrent = null;
         SqlDataAccess sqlObject = new SqlDataAccess();
+        private List<Socket> listClientSockets = new List<Socket>();
+
         public TrinhDieuKhien()
         {
             InitializeComponent();
@@ -159,6 +161,18 @@ namespace DK_Project
                 MessageBox.Show("loi khi thuc hien connect!");
             }
         }
+        //public void SetupRecieveCallback(Socket sock)
+        //{
+        //    try
+        //    {
+        //        AsyncCallback recieveData = new AsyncCallback(OnRecievedData);
+        //        sock.BeginReceive(byBuff, 0, byBuff.Length, SocketFlags.None, recieveData, sock);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        MessageBox.Show(this, ex.Message, "Setup Recieve Callback failed!");
+        //    }
+        //}
         public void SetupRecieveCallback(Socket sock)
         {
             try
@@ -171,6 +185,7 @@ namespace DK_Project
                 MessageBox.Show(this, ex.Message, "Setup Recieve Callback failed!");
             }
         }
+
         public void OnAddMessage(string sMessage)
         {
             //Cấu trúc tin nhắn nhận được từ client: x,y,z
@@ -415,6 +430,21 @@ namespace DK_Project
                 MessageBox.Show(this, ex.Message, "Send lenh dieu khien loi!");
             }
         }
+        public void ReconnectFormDisplay(Socket sock)
+        {
+            try
+            {
+                // Gửi tín hiệu xác nhận khi form hiển thị mở lại
+                byte[] message = Encoding.ASCII.GetBytes("RECONNECT");
+                sock.Send(message);
+                Console.WriteLine("Đã gửi tín hiệu RECONNECT đến form hiển thị.");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Lỗi khi gửi tín hiệu Reconnect: " + ex.Message);
+            }
+        }
+
         public void OnRecievedData(IAsyncResult ar)
         {
             Socket socks = (Socket)ar.AsyncState;
@@ -449,6 +479,43 @@ namespace DK_Project
                 MessageBox.Show(this, ex.Message, "Lỗi xảy ra khi nhận kết quả trả về!");
             }
         }
+        private void RemoveSocketFromList(Socket sock)
+        {
+            if (sock == null) return;
+
+            lock (listClientSockets) // Đảm bảo thread-safe
+            {
+                if (listClientSockets.Contains(sock))
+                {
+                    listClientSockets.Remove(sock);
+                    Console.WriteLine("Đã xóa socket: " + sock.RemoteEndPoint);
+                }
+                else
+                {
+                    Console.WriteLine("Socket không tồn tại trong danh sách.");
+                }
+            }
+        }
+        private void FormDieuKhien_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            foreach (var sock in listClientSockets)
+            {
+                try
+                {
+                    byte[] msg = Encoding.ASCII.GetBytes("CLOSE");
+                    sock.Send(msg);
+                    sock.Shutdown(SocketShutdown.Both);
+                    sock.Close();
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("Lỗi khi đóng kết nối: " + ex.Message);
+                }
+            }
+            listClientSockets.Clear();
+        }
+
+
         private void tabChuongTrinh_SelectedIndexChanged(object sender, EventArgs e)
         {
             switch (tabChuongTrinh.SelectedIndex)
@@ -1220,6 +1287,7 @@ namespace DK_Project
             lblDapAnToaSang.Text = cauhoiVD.dapan;
             cauhoiVD.trangThai = 1;
             _entity.SaveChanges();
+            _currentQuestionIdForAnswer = currentCau;
             SendEvent("0,ser,playtoasang," + cuocThiHienTai.cuocthiid + "," + currentCau + ",ready");
 
         }
@@ -1358,6 +1426,8 @@ namespace DK_Project
             lblDapAnToaSang.Text = cauhoiVD.dapan;
             cauhoiVD.trangThai = 1;
             _entity.SaveChanges();
+            _currentQuestionIdForAnswer = currentCau;
+
             SendEvent("0,ser,playtoasang," + cuocThiHienTai.cuocthiid + "," + currentCau + ",ready");
 
  
@@ -1503,6 +1573,8 @@ namespace DK_Project
             lblDapAnToaSang.Text = cauhoiVD.dapan;
             cauhoiVD.trangThai = 1;
             _entity.SaveChanges();
+            _currentQuestionIdForAnswer = currentCau;
+
             SendEvent("0,ser,playtoasang," + cuocThiHienTai.cuocthiid + "," + currentCau + ",ready");
 
 
@@ -1520,6 +1592,8 @@ namespace DK_Project
             lblDapAnToaSang.Text = cauhoiVD.dapan;
             cauhoiVD.trangThai = 1;
             _entity.SaveChanges();
+            _currentQuestionIdForAnswer = currentCau;
+
             SendEvent("0,ser,playtoasang," + cuocThiHienTai.cuocthiid + "," + currentCau + ",ready");
 
 
@@ -1537,6 +1611,8 @@ namespace DK_Project
             lblDapAnToaSang.Text = cauhoiVD.dapan;
             cauhoiVD.trangThai = 1;
             _entity.SaveChanges();
+            _currentQuestionIdForAnswer = currentCau;
+
             SendEvent("0,ser,playtoasang," + cuocThiHienTai.cuocthiid + "," + currentCau + ",ready");
 
 
@@ -1554,6 +1630,8 @@ namespace DK_Project
             lblDapAnToaSang.Text = cauhoiVD.dapan;
             cauhoiVD.trangThai = 1;
             _entity.SaveChanges();
+            _currentQuestionIdForAnswer = currentCau;
+
             SendEvent("0,ser,playtoasang," + cuocThiHienTai.cuocthiid + "," + currentCau + ",ready");
         }
         //hien thi cau tra loi
@@ -1894,8 +1972,6 @@ namespace DK_Project
             }
         }
 
-
-
         private void btnXoaVD_Click(object sender, EventArgs e)
         {
             string message = "Bạn chắc chắn muốn xóa dữ liệu phần thi Về đích?";
@@ -1969,7 +2045,6 @@ namespace DK_Project
         {
             loadNoiDungCauHoiCP();
         }
-
 
         private void btnLatCHC_Click(object sender, EventArgs e)
         {
@@ -2221,6 +2296,45 @@ namespace DK_Project
         {
 
         }
+
+        private void cbNgoiSaoHiVong_CheckedChanged(object sender, EventArgs e)
+        {
+            //if (cbNgoiSaoHiVong.Checked)
+            //{
+            //    // Phát sự kiện "ngôi sao hy vọng" với trạng thái start để phát ngay
+            //    SendEvent(cbbDoiChoiVD.SelectedValue.ToString() + ",ser,playtoasang," + cuocThiHienTai.cuocthiid + ",0,start_ngoisaohivong");
+            //}
+
+        }
+
+        private void btnNgoiSao_Click(object sender, EventArgs e)
+        {
+            if (!cbNgoiSaoHiVong.Checked)
+            {
+                if (_currentQuestionIdForAnswer > 0)
+                {
+                    // Nếu đã được check thì gửi sự kiện như bình thường
+                    SendEvent(cbbDoiChoiVD.SelectedValue.ToString()
+                              + ",ser,playtoasang,"
+                              + cuocThiHienTai.cuocthiid
+                              + "," + _currentQuestionIdForAnswer + ",start_Nongoisaohivong");
+                }
+            }
+            else
+            {
+                if (_currentQuestionIdForAnswer > 0)
+                {
+                    // Nếu đã được check thì gửi sự kiện như bình thường
+                    SendEvent(cbbDoiChoiVD.SelectedValue.ToString()
+                              + ",ser,playtoasang,"
+                              + cuocThiHienTai.cuocthiid
+                              +","+ _currentQuestionIdForAnswer + ",start_ngoisaohivong");
+                }
+            }
+            
+
+        }
+
 
         private void mnItemPhanThi_Click(object sender, EventArgs e)
         {

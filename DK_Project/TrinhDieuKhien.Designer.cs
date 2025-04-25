@@ -78,6 +78,7 @@
             this.btnXoaDL = new System.Windows.Forms.Button();
             this.btnCautraloi = new System.Windows.Forms.Button();
             this.btnResetKD = new System.Windows.Forms.Button();
+            this.btnKetThucKD = new System.Windows.Forms.Button();
             this.btnStartKD = new System.Windows.Forms.Button();
             this.btnKDNext = new System.Windows.Forms.Button();
             this.cbxDungSai = new System.Windows.Forms.CheckBox();
@@ -160,6 +161,8 @@
             this.btnStartKP = new System.Windows.Forms.Button();
             this.btnCau1KP = new System.Windows.Forms.Button();
             this.tbToaSang = new System.Windows.Forms.TabPage();
+            this.btnNgoiSao = new System.Windows.Forms.Button();
+            this.btnHienThiDapAn = new System.Windows.Forms.Button();
             this.btnCapNhatDiemManHinhTS = new System.Windows.Forms.Button();
             this.lblDapAnToaSang = new System.Windows.Forms.Label();
             this.labelDapAnToaSang = new System.Windows.Forms.Label();
@@ -194,8 +197,6 @@
             this.btnCau2kg = new System.Windows.Forms.Button();
             this.btnCau1kg = new System.Windows.Forms.Button();
             this.tmMain = new System.Windows.Forms.Timer(this.components);
-            this.btnHienThiDapAn = new System.Windows.Forms.Button();
-            this.btnKetThucKD = new System.Windows.Forms.Button();
             this.grDsClient.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvConnected)).BeginInit();
             this.mnMain.SuspendLayout();
@@ -671,6 +672,16 @@
             this.btnResetKD.Text = "Làm mới nút các gói";
             this.btnResetKD.UseVisualStyleBackColor = true;
             this.btnResetKD.Click += new System.EventHandler(this.btnResetKD_Click);
+            // 
+            // btnKetThucKD
+            // 
+            this.btnKetThucKD.Location = new System.Drawing.Point(314, 19);
+            this.btnKetThucKD.Name = "btnKetThucKD";
+            this.btnKetThucKD.Size = new System.Drawing.Size(165, 31);
+            this.btnKetThucKD.TabIndex = 2;
+            this.btnKetThucKD.Text = "Kết thúc câu và cập nhật điểm";
+            this.btnKetThucKD.UseVisualStyleBackColor = true;
+            this.btnKetThucKD.Click += new System.EventHandler(this.btnKetThucKD_Click);
             // 
             // btnStartKD
             // 
@@ -1188,7 +1199,7 @@
             this.btnCauPKP.Name = "btnCauPKP";
             this.btnCauPKP.Size = new System.Drawing.Size(75, 23);
             this.btnCauPKP.TabIndex = 107;
-            this.btnCauPKP.Text = "Câu hỏi phụ";
+            this.btnCauPKP.Text = "Câu 5";
             this.btnCauPKP.UseVisualStyleBackColor = true;
             this.btnCauPKP.Click += new System.EventHandler(this.btnCauPKP_Click);
             // 
@@ -1532,6 +1543,7 @@
             // 
             // tbToaSang
             // 
+            this.tbToaSang.Controls.Add(this.btnNgoiSao);
             this.tbToaSang.Controls.Add(this.btnHienThiDapAn);
             this.tbToaSang.Controls.Add(this.btnCapNhatDiemManHinhTS);
             this.tbToaSang.Controls.Add(this.lblDapAnToaSang);
@@ -1562,6 +1574,26 @@
             this.tbToaSang.TabIndex = 4;
             this.tbToaSang.Text = "Tỏa Sáng";
             this.tbToaSang.UseVisualStyleBackColor = true;
+            // 
+            // btnNgoiSao
+            // 
+            this.btnNgoiSao.Location = new System.Drawing.Point(672, 105);
+            this.btnNgoiSao.Name = "btnNgoiSao";
+            this.btnNgoiSao.Size = new System.Drawing.Size(106, 34);
+            this.btnNgoiSao.TabIndex = 113;
+            this.btnNgoiSao.Text = "Ngôi sao hi vọng";
+            this.btnNgoiSao.UseVisualStyleBackColor = true;
+            this.btnNgoiSao.Click += new System.EventHandler(this.btnNgoiSao_Click);
+            // 
+            // btnHienThiDapAn
+            // 
+            this.btnHienThiDapAn.Location = new System.Drawing.Point(645, 156);
+            this.btnHienThiDapAn.Name = "btnHienThiDapAn";
+            this.btnHienThiDapAn.Size = new System.Drawing.Size(250, 34);
+            this.btnHienThiDapAn.TabIndex = 112;
+            this.btnHienThiDapAn.Text = "Hiển thị đáp án của câu hỏi nếu không có thí sinh nào dành quyến";
+            this.btnHienThiDapAn.UseVisualStyleBackColor = true;
+            this.btnHienThiDapAn.Click += new System.EventHandler(this.btnHienThiDapAn_Click);
             // 
             // btnCapNhatDiemManHinhTS
             // 
@@ -1666,6 +1698,7 @@
             this.cbNgoiSaoHiVong.TabIndex = 4;
             this.cbNgoiSaoHiVong.Text = "Chọn ngôi sao hi vọng";
             this.cbNgoiSaoHiVong.UseVisualStyleBackColor = true;
+            this.cbNgoiSaoHiVong.CheckedChanged += new System.EventHandler(this.cbNgoiSaoHiVong_CheckedChanged);
             // 
             // cBDanhQuyenTraLoi
             // 
@@ -1890,26 +1923,6 @@
             this.tmMain.Interval = 1000;
             this.tmMain.Tick += new System.EventHandler(this.tmMain_Tick);
             // 
-            // btnHienThiDapAn
-            // 
-            this.btnHienThiDapAn.Location = new System.Drawing.Point(645, 156);
-            this.btnHienThiDapAn.Name = "btnHienThiDapAn";
-            this.btnHienThiDapAn.Size = new System.Drawing.Size(250, 34);
-            this.btnHienThiDapAn.TabIndex = 112;
-            this.btnHienThiDapAn.Text = "Hiển thị đáp án của câu hỏi nếu không có thí sinh nào dành quyến";
-            this.btnHienThiDapAn.UseVisualStyleBackColor = true;
-            this.btnHienThiDapAn.Click += new System.EventHandler(this.btnHienThiDapAn_Click);
-            // 
-            // btnKetThucKD
-            // 
-            this.btnKetThucKD.Location = new System.Drawing.Point(314, 19);
-            this.btnKetThucKD.Name = "btnKetThucKD";
-            this.btnKetThucKD.Size = new System.Drawing.Size(165, 31);
-            this.btnKetThucKD.TabIndex = 2;
-            this.btnKetThucKD.Text = "Kết thúc câu và cập nhật điểm";
-            this.btnKetThucKD.UseVisualStyleBackColor = true;
-            this.btnKetThucKD.Click += new System.EventHandler(this.btnKetThucKD_Click);
-            // 
             // TrinhDieuKhien
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -2124,6 +2137,7 @@
         private System.Windows.Forms.Button btnCapNhatDiemManHinhTS;
         private System.Windows.Forms.Button btnHienThiDapAn;
         private System.Windows.Forms.Button btnKetThucKD;
+        private System.Windows.Forms.Button btnNgoiSao;
     }
 }
 
