@@ -1,4 +1,5 @@
-﻿using Dapper;
+﻿using AxWMPLib;
+using Dapper;
 using DK_Project.Management;
 using DK_Project.Model;
 using System;
@@ -24,7 +25,7 @@ namespace DK_Project
     public partial class TrinhDieuKhien : Form
     {
         public static string IP_DB = ConfigurationManager.AppSettings["IP_DB_SERVER"];
-        public static string connectionString = "metadata=res://*/Model.mdDiSan.csdl|res://*/Model.mdDiSan.ssdl|res://*/Model.mdDiSan.msl;provider=System.Data.SqlClient;provider connection string=&quot;data source=" + IP_DB + ";initial catalog=QuaMienDiSan;persist security info=True;user id=sa;password=Vnpt@123;MultipleActiveResultSets=True;App=EntityFramework&quot;\" providerName=\"System.Data.EntityClient";
+        public static string connectionString = "metadata=res://*/Model.mdDiSan.csdl|res://*/Model.mdDiSan.ssdl|res://*/Model.mdDiSan.msl;provider=System.Data.SqlClient;provider connection string=&quot;data source=" + IP_DB + ";initial catalog=english;persist security info=True;user id=sa;password=12345;MultipleActiveResultSets=True;App=EntityFramework&quot;\" providerName=\"System.Data.EntityClient";
         private Socket sock;
         private byte[] byBuff = new byte[256];
         private event AddMessage addMessage;
@@ -1021,8 +1022,9 @@ namespace DK_Project
 
         private void loadNoiDungCauHoiCP()
         {
-            string sql = "SELECT * from ds_goicaudiscovery WHERE cuocthiid = " + cuocThiHienTai.cuocthiid + " and doithiid = "+ int.Parse(slbDoiChoiCP.SelectedValue.ToString()) +" and trangthai = 'true'";
+            string sql = "SELECT * FROM ds_goicaudiscovery WHERE cuocthiid = " + cuocThiHienTai.cuocthiid + " AND doithiid = " + int.Parse(slbDoiChoiCP.SelectedValue.ToString()) + " AND trangthai = 'true'";
             DataTable dt = sqlObject.getDataFromSql(sql, "").Tables[0];
+
             if (dt != null && dt.Rows.Count > 0)
             {
                 for (int i = 0; i < dt.Rows.Count; i++)
@@ -1031,23 +1033,64 @@ namespace DK_Project
                     cauhoichudeId = int.Parse(dr["cauhoiid"].ToString());
                     lsCauHoiPhuCP = getListCauHoiPhuByChaId(cauhoichudeId);
                     rtbCauHoiChinh.Text = dr["chude"].ToString();
-                    btnCPCau1.Enabled = false;
-                    btnCPCau1.Visible = false;
-                    btnCPCau2.Enabled = false;
-                    btnCPCau2.Visible = false;
-                    btnCPCau3.Enabled = false;
-                    btnCPCau3.Visible = false;
-                    btnCPCau4.Enabled = false;
-                    btnCPCau4.Visible = false;
-                    btnCPCau5.Enabled = false;
-                    btnCPCau5.Visible = false;
-                    btnCPCau6.Enabled = false;
-                    btnCPCau6.Visible = false;
-                    pBCauHoiChinhCP.Image = Image.FromFile(directoryPath + "\\Resources\\pic\\" + dr["noidungchude"].ToString());
-                    pBCauHoiChinhCP.SizeMode = PictureBoxSizeMode.StretchImage;
 
+                    // Ẩn các nút
+                    btnCPCau1.Enabled = btnCPCau1.Visible = false;
+                    btnCPCau2.Enabled = btnCPCau2.Visible = false;
+                    btnCPCau3.Enabled = btnCPCau3.Visible = false;
+                    btnCPCau4.Enabled = btnCPCau4.Visible = false;
+                    btnCPCau5.Enabled = btnCPCau5.Visible = false;
+                    btnCPCau6.Enabled = btnCPCau6.Visible = false;
 
+                    // Reset hiển thị
+                    pBCauHoiChinhCP.Visible = false;
+                    axWindowsMediaPlayer1.Visible = false;
 
+                    string fileName = dr["noidungchude"].ToString();
+                    string extension = Path.GetExtension(fileName).ToLower();
+                    string fullPath = "";
+
+                    // Phân loại đường dẫn theo loại file
+                    if (extension == ".jpg" || extension == ".jpeg" || extension == ".png" || extension == ".bmp" || extension == ".gif")
+                    {
+                        fullPath = Path.Combine(directoryPath, "Resources", "pic", fileName);
+
+                        // Hiển thị hình ảnh
+                        if (File.Exists(fullPath))
+                        {
+                            pBCauHoiChinhCP.Image = Image.FromFile(fullPath);
+                            pBCauHoiChinhCP.SizeMode = PictureBoxSizeMode.StretchImage;
+                            pBCauHoiChinhCP.Visible = true;
+                        }
+                        else
+                        {
+                            MessageBox.Show("Không tìm thấy hình ảnh: " + fullPath);
+                        }
+                    }
+                    else if (extension == ".mp4" || extension == ".avi" || extension == ".mov" || extension == ".wmv" || extension == ".mkv")
+                    {
+                        fullPath = Path.Combine(directoryPath, "Resources", "Video", fileName);
+
+                        // Phát video
+                        if (File.Exists(fullPath))
+                        {
+                            axWindowsMediaPlayer1.URL = fullPath;
+                            axWindowsMediaPlayer1.settings.autoStart = false; // Không tự động phát
+                            axWindowsMediaPlayer1.Ctlcontrols.stop();        // Stop sẵn
+                            axWindowsMediaPlayer1.Visible = false;           // Ẩn đi ban đầu
+                            axWindowsMediaPlayer1.SendToBack();
+                            axWindowsMediaPlayer1.Visible = true;
+                            // Cho video nằm dưới
+                        }
+                        else
+                        {
+                            MessageBox.Show("Không tìm thấy video: " + fullPath);
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("Định dạng file không hỗ trợ: " + extension);
+                    }
                 }
             }
         }
@@ -1157,7 +1200,7 @@ namespace DK_Project
 
             tinhDiemChoCauHoiChinh_New();
             capNhatTongDiem();
-            SendEvent("0,ser,playkhamphachiase," + cauhoichudeId + ",0,capnhatTongDiem");
+            //SendEvent("0,ser,playkhamphachiase," + cauhoichudeId + ",0,capnhatTongDiem");
 
         }
 
@@ -2150,6 +2193,19 @@ namespace DK_Project
             tmMain.Enabled = true;
             time = 180;
             lblThoiGian.Text = time.ToString();
+            // Kiểm tra nếu có video thì phát
+            if (!string.IsNullOrEmpty(axWindowsMediaPlayer1.URL))
+            {
+                axWindowsMediaPlayer1.Visible = true; // Hiện player
+                axWindowsMediaPlayer1.Ctlcontrols.play(); // Phát video
+            }
+            else
+            {
+                axWindowsMediaPlayer1.Visible = false; // Tắt player
+
+                axWindowsMediaPlayer1.Ctlcontrols.stop(); // Tắt video
+
+            }
             SendEvent("0,ser,playkhamphachiase," + cauhoichudeId + ",0,start");
         }
 

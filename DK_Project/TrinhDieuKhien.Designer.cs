@@ -197,6 +197,7 @@
             this.btnCau2kg = new System.Windows.Forms.Button();
             this.btnCau1kg = new System.Windows.Forms.Button();
             this.tmMain = new System.Windows.Forms.Timer(this.components);
+            this.axWindowsMediaPlayer1 = new AxWMPLib.AxWindowsMediaPlayer();
             this.grDsClient.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvConnected)).BeginInit();
             this.mnMain.SuspendLayout();
@@ -215,6 +216,7 @@
             this.tbThuThach.SuspendLayout();
             this.tbToaSang.SuspendLayout();
             this.btnKetThuc.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.axWindowsMediaPlayer1)).BeginInit();
             this.SuspendLayout();
             // 
             // grDsClient
@@ -831,6 +833,7 @@
             // 
             // tbKPCS
             // 
+            this.tbKPCS.Controls.Add(this.axWindowsMediaPlayer1);
             this.tbKPCS.Controls.Add(this.btnHienThi6Nut);
             this.tbKPCS.Controls.Add(this.btnResetDL);
             this.tbKPCS.Controls.Add(this.label8);
@@ -1923,6 +1926,16 @@
             this.tmMain.Interval = 1000;
             this.tmMain.Tick += new System.EventHandler(this.tmMain_Tick);
             // 
+            // axWindowsMediaPlayer1
+            // 
+            this.axWindowsMediaPlayer1.Enabled = true;
+            this.axWindowsMediaPlayer1.Location = new System.Drawing.Point(262, 11);
+            this.axWindowsMediaPlayer1.Name = "axWindowsMediaPlayer1";
+            this.axWindowsMediaPlayer1.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("axWindowsMediaPlayer1.OcxState")));
+            this.axWindowsMediaPlayer1.Size = new System.Drawing.Size(598, 342);
+            this.axWindowsMediaPlayer1.TabIndex = 40;
+            this.axWindowsMediaPlayer1.Visible = false;
+            // 
             // TrinhDieuKhien
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1964,6 +1977,7 @@
             this.tbToaSang.PerformLayout();
             this.btnKetThuc.ResumeLayout(false);
             this.btnKetThuc.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.axWindowsMediaPlayer1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -2138,6 +2152,7 @@
         private System.Windows.Forms.Button btnHienThiDapAn;
         private System.Windows.Forms.Button btnKetThucKD;
         private System.Windows.Forms.Button btnNgoiSao;
+        private AxWMPLib.AxWindowsMediaPlayer axWindowsMediaPlayer1;
     }
 }
 
