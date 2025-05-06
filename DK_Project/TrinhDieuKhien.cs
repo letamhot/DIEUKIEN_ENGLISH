@@ -93,7 +93,7 @@ namespace DK_Project
 
             foreach (var doi in dsdoi)
             {
-                teamplayings.Add(doi.doiid, $"ĐỘI {doi.vitridoi} - {doi.tennguoichoi} - {doi.tendoi}");
+                teamplayings.Add(doi.doiid, $"TEAM {doi.vitridoi} - {doi.tennguoichoi} - {doi.tendoi}");
             }
 
             // Tạo binding source một lần
@@ -355,7 +355,7 @@ namespace DK_Project
                 {
                     if (!teamplayings.ContainsKey(dsdoi[i].doiid))
                     {
-                        teamplayings.Add(dsdoi[i].doiid, "ĐỘI " + dsdoi[i].vitridoi + " - " + dsdoi[i].tennguoichoi + " - " + dsdoi[i].tendoi);
+                        teamplayings.Add(dsdoi[i].doiid, "TEAM " + dsdoi[i].vitridoi + " - " + dsdoi[i].tennguoichoi + " - " + dsdoi[i].tendoi);
                     }
                 }
 
@@ -380,7 +380,7 @@ namespace DK_Project
                 {
                     if (!teamplayings.ContainsKey(dsdoi[i].doiid))
                     {
-                        teamplayings.Add(dsdoi[i].doiid, "ĐỘI " + dsdoi[i].vitridoi + " - " + dsdoi[i].tennguoichoi + " - " + dsdoi[i].tendoi);
+                        teamplayings.Add(dsdoi[i].doiid, "TEAM " + dsdoi[i].vitridoi + " - " + dsdoi[i].tennguoichoi + " - " + dsdoi[i].tendoi);
                     }
                 }
 
@@ -1530,7 +1530,7 @@ namespace DK_Project
                         DataRow dr = dt.Rows[i];
                         int id_team = int.Parse(dr["doiid"].ToString());
                         ds_doi _doi = _entity.ds_doi.Find(id_team);
-                        string[] row = { "ĐỘI " + _doi.vitridoi + " - " + _doi.tennguoichoi + " - " + _doi.tendoi, dr["tongdiem"].ToString() };
+                        string[] row = { "TEAM " + _doi.vitridoi + " - " + _doi.tennguoichoi + " - " + _doi.tendoi, dr["tongdiem"].ToString() };
                         ListViewItem lvi = new ListViewItem(row);
                         lvBangDiemMain.Items.Add(lvi);
                         if (temp.ContainsKey(id_team))
@@ -1557,7 +1557,7 @@ namespace DK_Project
                         DataRow dr = dt.Rows[i];
                         int id_team = int.Parse(dr["doiid"].ToString());
                         ds_doi _doi = _entity.ds_doi.Find(id_team);
-                        string[] row = { "ĐỘI " + _doi.vitridoi + " - " + _doi.tennguoichoi + " - " + _doi.tendoi, dr["tongdiem"].ToString() };
+                        string[] row = { "TEAM " + _doi.vitridoi + " - " + _doi.tennguoichoi + " - " + _doi.tendoi, dr["tongdiem"].ToString() };
                         ListViewItem lvi = new ListViewItem(row);
                         lvBangDiemMain.Items.Add(lvi);
                         if (temp.ContainsKey(id_team))
@@ -2062,7 +2062,7 @@ namespace DK_Project
                     DataRow dr = dt.Rows[i];
                     int id_team = int.Parse(dr["doiid"].ToString());
                     ds_doi _doi = _entity.ds_doi.Find(id_team);
-                    string[] row = { "ĐỘI " + _doi.vitridoi + " - " + _doi.tennguoichoi + " - " + _doi.tendoi, dr["tongdiem"].ToString() };
+                    string[] row = { "TEAM " + _doi.vitridoi + " - " + _doi.tennguoichoi + " - " + _doi.tendoi, dr["tongdiem"].ToString() };
                     ListViewItem lvi = new ListViewItem(row);
                     lvBangDiemMain.Items.Add(lvi);
                     if (temp.ContainsKey(id_team))
