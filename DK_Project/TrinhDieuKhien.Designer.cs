@@ -94,6 +94,7 @@
             this.btnKDGoi2 = new System.Windows.Forms.Button();
             this.btnKDGoi1 = new System.Windows.Forms.Button();
             this.tbKPCS = new System.Windows.Forms.TabPage();
+            this.axWindowsMediaPlayer1 = new AxWMPLib.AxWindowsMediaPlayer();
             this.btnHienThi6Nut = new System.Windows.Forms.Button();
             this.btnResetDL = new System.Windows.Forms.Button();
             this.label8 = new System.Windows.Forms.Label();
@@ -197,7 +198,6 @@
             this.btnCau2kg = new System.Windows.Forms.Button();
             this.btnCau1kg = new System.Windows.Forms.Button();
             this.tmMain = new System.Windows.Forms.Timer(this.components);
-            this.axWindowsMediaPlayer1 = new AxWMPLib.AxWindowsMediaPlayer();
             this.grDsClient.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvConnected)).BeginInit();
             this.mnMain.SuspendLayout();
@@ -212,11 +212,11 @@
             this.groupBox4.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.tbKPCS.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.axWindowsMediaPlayer1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pBCauHoiChinhCP)).BeginInit();
             this.tbThuThach.SuspendLayout();
             this.tbToaSang.SuspendLayout();
             this.btnKetThuc.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.axWindowsMediaPlayer1)).BeginInit();
             this.SuspendLayout();
             // 
             // grDsClient
@@ -746,7 +746,7 @@
             // 
             // btnReadyGoiKD
             // 
-            this.btnReadyGoiKD.Location = new System.Drawing.Point(630, 63);
+            this.btnReadyGoiKD.Location = new System.Drawing.Point(564, 63);
             this.btnReadyGoiKD.Name = "btnReadyGoiKD";
             this.btnReadyGoiKD.Size = new System.Drawing.Size(75, 28);
             this.btnReadyGoiKD.TabIndex = 12;
@@ -757,15 +757,15 @@
             // cbxDoiChoi
             // 
             this.cbxDoiChoi.FormattingEnabled = true;
-            this.cbxDoiChoi.Location = new System.Drawing.Point(630, 37);
+            this.cbxDoiChoi.Location = new System.Drawing.Point(564, 36);
             this.cbxDoiChoi.Name = "cbxDoiChoi";
-            this.cbxDoiChoi.Size = new System.Drawing.Size(220, 21);
+            this.cbxDoiChoi.Size = new System.Drawing.Size(336, 21);
             this.cbxDoiChoi.TabIndex = 8;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(556, 40);
+            this.label2.Location = new System.Drawing.Point(487, 39);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(76, 13);
             this.label2.TabIndex = 7;
@@ -773,7 +773,7 @@
             // 
             // btnKDGoi6
             // 
-            this.btnKDGoi6.Location = new System.Drawing.Point(466, 25);
+            this.btnKDGoi6.Location = new System.Drawing.Point(400, 24);
             this.btnKDGoi6.Name = "btnKDGoi6";
             this.btnKDGoi6.Size = new System.Drawing.Size(71, 67);
             this.btnKDGoi6.TabIndex = 6;
@@ -783,7 +783,7 @@
             // 
             // btnKDGoi5
             // 
-            this.btnKDGoi5.Location = new System.Drawing.Point(390, 25);
+            this.btnKDGoi5.Location = new System.Drawing.Point(324, 24);
             this.btnKDGoi5.Name = "btnKDGoi5";
             this.btnKDGoi5.Size = new System.Drawing.Size(71, 67);
             this.btnKDGoi5.TabIndex = 5;
@@ -793,7 +793,7 @@
             // 
             // btnKDGoi4
             // 
-            this.btnKDGoi4.Location = new System.Drawing.Point(314, 25);
+            this.btnKDGoi4.Location = new System.Drawing.Point(248, 24);
             this.btnKDGoi4.Name = "btnKDGoi4";
             this.btnKDGoi4.Size = new System.Drawing.Size(71, 67);
             this.btnKDGoi4.TabIndex = 4;
@@ -803,7 +803,7 @@
             // 
             // btnKDGoi3
             // 
-            this.btnKDGoi3.Location = new System.Drawing.Point(237, 25);
+            this.btnKDGoi3.Location = new System.Drawing.Point(171, 24);
             this.btnKDGoi3.Name = "btnKDGoi3";
             this.btnKDGoi3.Size = new System.Drawing.Size(71, 67);
             this.btnKDGoi3.TabIndex = 3;
@@ -813,7 +813,7 @@
             // 
             // btnKDGoi2
             // 
-            this.btnKDGoi2.Location = new System.Drawing.Point(161, 25);
+            this.btnKDGoi2.Location = new System.Drawing.Point(95, 24);
             this.btnKDGoi2.Name = "btnKDGoi2";
             this.btnKDGoi2.Size = new System.Drawing.Size(71, 67);
             this.btnKDGoi2.TabIndex = 2;
@@ -823,7 +823,7 @@
             // 
             // btnKDGoi1
             // 
-            this.btnKDGoi1.Location = new System.Drawing.Point(84, 25);
+            this.btnKDGoi1.Location = new System.Drawing.Point(18, 24);
             this.btnKDGoi1.Name = "btnKDGoi1";
             this.btnKDGoi1.Size = new System.Drawing.Size(71, 67);
             this.btnKDGoi1.TabIndex = 1;
@@ -865,6 +865,16 @@
             this.tbKPCS.TabIndex = 3;
             this.tbKPCS.Text = "Khám phá và chia sẻ";
             this.tbKPCS.UseVisualStyleBackColor = true;
+            // 
+            // axWindowsMediaPlayer1
+            // 
+            this.axWindowsMediaPlayer1.Enabled = true;
+            this.axWindowsMediaPlayer1.Location = new System.Drawing.Point(262, 11);
+            this.axWindowsMediaPlayer1.Name = "axWindowsMediaPlayer1";
+            this.axWindowsMediaPlayer1.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("axWindowsMediaPlayer1.OcxState")));
+            this.axWindowsMediaPlayer1.Size = new System.Drawing.Size(598, 342);
+            this.axWindowsMediaPlayer1.TabIndex = 40;
+            this.axWindowsMediaPlayer1.Visible = false;
             // 
             // btnHienThi6Nut
             // 
@@ -952,7 +962,7 @@
             // 
             // btnDungThoiGian
             // 
-            this.btnDungThoiGian.Location = new System.Drawing.Point(590, 381);
+            this.btnDungThoiGian.Location = new System.Drawing.Point(733, 377);
             this.btnDungThoiGian.Name = "btnDungThoiGian";
             this.btnDungThoiGian.Size = new System.Drawing.Size(89, 33);
             this.btnDungThoiGian.TabIndex = 19;
@@ -972,7 +982,7 @@
             // 
             // btnStart
             // 
-            this.btnStart.Location = new System.Drawing.Point(489, 382);
+            this.btnStart.Location = new System.Drawing.Point(632, 378);
             this.btnStart.Name = "btnStart";
             this.btnStart.Size = new System.Drawing.Size(78, 34);
             this.btnStart.TabIndex = 14;
@@ -1002,9 +1012,9 @@
             // slbDoiChoiCP
             // 
             this.slbDoiChoiCP.FormattingEnabled = true;
-            this.slbDoiChoiCP.Location = new System.Drawing.Point(272, 384);
+            this.slbDoiChoiCP.Location = new System.Drawing.Point(223, 384);
             this.slbDoiChoiCP.Name = "slbDoiChoiCP";
-            this.slbDoiChoiCP.Size = new System.Drawing.Size(179, 21);
+            this.slbDoiChoiCP.Size = new System.Drawing.Size(370, 21);
             this.slbDoiChoiCP.TabIndex = 10;
             this.slbDoiChoiCP.SelectedIndexChanged += new System.EventHandler(this.slbDoiChoiCP_SelectedIndexChanged);
             // 
@@ -1730,14 +1740,14 @@
             this.cbBDoiTraLoiVD.FormattingEnabled = true;
             this.cbBDoiTraLoiVD.Location = new System.Drawing.Point(535, 62);
             this.cbBDoiTraLoiVD.Name = "cbBDoiTraLoiVD";
-            this.cbBDoiTraLoiVD.Size = new System.Drawing.Size(163, 21);
+            this.cbBDoiTraLoiVD.Size = new System.Drawing.Size(360, 21);
             this.cbBDoiTraLoiVD.TabIndex = 3;
             // 
             // label10
             // 
-            this.label10.Location = new System.Drawing.Point(468, 65);
+            this.label10.Location = new System.Drawing.Point(471, 62);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(55, 44);
+            this.label10.Size = new System.Drawing.Size(52, 44);
             this.label10.TabIndex = 2;
             this.label10.Text = "Đội dành quyền trả lời:";
             // 
@@ -1746,7 +1756,7 @@
             this.cbbDoiChoiVD.FormattingEnabled = true;
             this.cbbDoiChoiVD.Location = new System.Drawing.Point(535, 33);
             this.cbbDoiChoiVD.Name = "cbbDoiChoiVD";
-            this.cbbDoiChoiVD.Size = new System.Drawing.Size(163, 21);
+            this.cbbDoiChoiVD.Size = new System.Drawing.Size(360, 21);
             this.cbbDoiChoiVD.TabIndex = 3;
             // 
             // label9
@@ -1926,16 +1936,6 @@
             this.tmMain.Interval = 1000;
             this.tmMain.Tick += new System.EventHandler(this.tmMain_Tick);
             // 
-            // axWindowsMediaPlayer1
-            // 
-            this.axWindowsMediaPlayer1.Enabled = true;
-            this.axWindowsMediaPlayer1.Location = new System.Drawing.Point(262, 11);
-            this.axWindowsMediaPlayer1.Name = "axWindowsMediaPlayer1";
-            this.axWindowsMediaPlayer1.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("axWindowsMediaPlayer1.OcxState")));
-            this.axWindowsMediaPlayer1.Size = new System.Drawing.Size(598, 342);
-            this.axWindowsMediaPlayer1.TabIndex = 40;
-            this.axWindowsMediaPlayer1.Visible = false;
-            // 
             // TrinhDieuKhien
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1970,6 +1970,7 @@
             this.groupBox3.PerformLayout();
             this.tbKPCS.ResumeLayout(false);
             this.tbKPCS.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.axWindowsMediaPlayer1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pBCauHoiChinhCP)).EndInit();
             this.tbThuThach.ResumeLayout(false);
             this.tbThuThach.PerformLayout();
@@ -1977,7 +1978,6 @@
             this.tbToaSang.PerformLayout();
             this.btnKetThuc.ResumeLayout(false);
             this.btnKetThuc.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.axWindowsMediaPlayer1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

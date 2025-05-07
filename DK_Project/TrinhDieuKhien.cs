@@ -197,22 +197,28 @@ namespace DK_Project
             string action = spl[2];
             if (src.Equals("cli"))
             {
-                if (action.Equals("connected"))
+                if (action.Equals("connected") && spl.Length > 3)
                 {
-                    var objDoi = _entity.ds_doi.Find(int.Parse(spl[0]));
-                    if (objDoi != null)
+                    if (int.TryParse(spl[0], out int doiId))
                     {
-                        if (spl[3] == "on")
+                        var objDoi = _entity.ds_doi.Find(doiId);
+
+                        if (objDoi != null)
                         {
-                            accessDataConnected(dgvConnected, true, objDoi);
-                        }
-                        else
-                        {
-                            MessageBox.Show("Thí sinh: " + objDoi.tennguoichoi + " ngắt kết nối!");
-                            accessDataConnected(dgvConnected, false, objDoi);
+                            if (spl[3] == "on")
+                            {
+                                accessDataConnected(dgvConnected, true, objDoi);
+                            }
+                            else
+                            {
+
+                                accessDataConnected(dgvConnected, false, objDoi);
+                                MessageBox.Show("Thí sinh: " + objDoi.tennguoichoi + " ngắt kết nối!");
+                            }
                         }
                     }
                 }
+
                 if (action.Equals("playkhoidong"))
                 {
                     if (spl[3] == "goi1")
@@ -1221,7 +1227,7 @@ namespace DK_Project
             {
                 // Nếu đã có, thì cập nhật điểm tổng
                 diem.sodiem = result;
-                diem.thoigiantraloi = int.Parse(lblThoiGian.Text);
+                //diem.thoigiantraloi = int.Parse(lblThoiGian.Text);
             }
             else
             {
