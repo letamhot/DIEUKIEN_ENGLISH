@@ -62,7 +62,7 @@ namespace DK_Project
             app = new server();
             connecServer();
 
-            addMessage = new AddMessage(OnAddMessage);
+            //addMessage = new AddMessage(OnAddMessage);
         }
 
         public TrinhDieuKhien(int cuocThiId)
