@@ -24,7 +24,7 @@ namespace DK_Project.Management
         private void ChinhDiemKD_Load(object sender, EventArgs e)
         {
             List<nDiem> listDiem = new List<nDiem>();
-            string sql = "SELECT a.diemid, b.noidungcauhoi, a.cauhoiid, a.sodiem from ds_diem a inner join ds_goicauhoikhoidong b on b.cauhoiid = a.cauhoiid where " +
+            string sql = "SELECT a.diemid, b.noidungcauhoi, a.cauhoiid,a.doiid, a.sodiem from ds_diem a inner join ds_goicauhoikhoidong b on b.cauhoiid = a.cauhoiid where " +
                 "a.doiid = " + _doiId + " and a.phanthiid = 1 and a.cuocthiid = " + _cuocThiId;
             DataTable dt = _sqlAccess.getDataFromSql(sql, "").Tables[0];
             if (dt != null && dt.Rows.Count > 0)
@@ -36,6 +36,7 @@ namespace DK_Project.Management
                     item.cauHoi = dt.Rows[i]["noidungcauhoi"].ToString();
                     item.cauhoiid = int.Parse(dt.Rows[i]["cauhoiid"].ToString());
                     item.soDiem = int.Parse(dt.Rows[i]["sodiem"].ToString());
+                    item.doiid = int.Parse(dt.Rows[i]["doiid"].ToString());
                     listDiem.Add(item);
                 }
             }

@@ -627,7 +627,7 @@
             // 
             // btnCapNhatDiemCacManHinh
             // 
-            this.btnCapNhatDiemCacManHinh.Location = new System.Drawing.Point(685, 19);
+            this.btnCapNhatDiemCacManHinh.Location = new System.Drawing.Point(674, 19);
             this.btnCapNhatDiemCacManHinh.Name = "btnCapNhatDiemCacManHinh";
             this.btnCapNhatDiemCacManHinh.Size = new System.Drawing.Size(172, 31);
             this.btnCapNhatDiemCacManHinh.TabIndex = 7;
@@ -637,7 +637,7 @@
             // 
             // btnSuaDiemKD
             // 
-            this.btnSuaDiemKD.Location = new System.Drawing.Point(574, 19);
+            this.btnSuaDiemKD.Location = new System.Drawing.Point(520, 19);
             this.btnSuaDiemKD.Name = "btnSuaDiemKD";
             this.btnSuaDiemKD.Size = new System.Drawing.Size(105, 31);
             this.btnSuaDiemKD.TabIndex = 6;
@@ -888,7 +888,7 @@
             // 
             // btnResetDL
             // 
-            this.btnResetDL.Location = new System.Drawing.Point(590, 444);
+            this.btnResetDL.Location = new System.Drawing.Point(587, 478);
             this.btnResetDL.Name = "btnResetDL";
             this.btnResetDL.Size = new System.Drawing.Size(96, 37);
             this.btnResetDL.TabIndex = 28;
@@ -899,7 +899,7 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(389, 431);
+            this.label8.Location = new System.Drawing.Point(386, 465);
             this.label8.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(55, 13);
@@ -909,7 +909,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(272, 432);
+            this.label7.Location = new System.Drawing.Point(269, 466);
             this.label7.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(55, 13);
@@ -919,7 +919,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(166, 431);
+            this.label5.Location = new System.Drawing.Point(163, 465);
             this.label5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(55, 13);
@@ -928,7 +928,7 @@
             // 
             // lblDiemGK3
             // 
-            this.lblDiemGK3.Location = new System.Drawing.Point(374, 451);
+            this.lblDiemGK3.Location = new System.Drawing.Point(371, 485);
             this.lblDiemGK3.Margin = new System.Windows.Forms.Padding(2);
             this.lblDiemGK3.Name = "lblDiemGK3";
             this.lblDiemGK3.Size = new System.Drawing.Size(76, 20);
@@ -936,7 +936,7 @@
             // 
             // lblDiemGK2
             // 
-            this.lblDiemGK2.Location = new System.Drawing.Point(262, 451);
+            this.lblDiemGK2.Location = new System.Drawing.Point(259, 485);
             this.lblDiemGK2.Margin = new System.Windows.Forms.Padding(2);
             this.lblDiemGK2.Name = "lblDiemGK2";
             this.lblDiemGK2.Size = new System.Drawing.Size(76, 20);
@@ -944,7 +944,7 @@
             // 
             // lblDiemGK1
             // 
-            this.lblDiemGK1.Location = new System.Drawing.Point(152, 451);
+            this.lblDiemGK1.Location = new System.Drawing.Point(149, 485);
             this.lblDiemGK1.Margin = new System.Windows.Forms.Padding(2);
             this.lblDiemGK1.Name = "lblDiemGK1";
             this.lblDiemGK1.Size = new System.Drawing.Size(76, 20);
@@ -962,7 +962,7 @@
             // 
             // btnDungThoiGian
             // 
-            this.btnDungThoiGian.Location = new System.Drawing.Point(733, 377);
+            this.btnDungThoiGian.Location = new System.Drawing.Point(704, 399);
             this.btnDungThoiGian.Name = "btnDungThoiGian";
             this.btnDungThoiGian.Size = new System.Drawing.Size(89, 33);
             this.btnDungThoiGian.TabIndex = 19;
@@ -972,7 +972,7 @@
             // 
             // btnXoaCP
             // 
-            this.btnXoaCP.Location = new System.Drawing.Point(706, 444);
+            this.btnXoaCP.Location = new System.Drawing.Point(703, 478);
             this.btnXoaCP.Name = "btnXoaCP";
             this.btnXoaCP.Size = new System.Drawing.Size(192, 37);
             this.btnXoaCP.TabIndex = 17;
@@ -982,7 +982,7 @@
             // 
             // btnStart
             // 
-            this.btnStart.Location = new System.Drawing.Point(632, 378);
+            this.btnStart.Location = new System.Drawing.Point(603, 400);
             this.btnStart.Name = "btnStart";
             this.btnStart.Size = new System.Drawing.Size(78, 34);
             this.btnStart.TabIndex = 14;
@@ -992,7 +992,7 @@
             // 
             // btnCapNhatDiemCP
             // 
-            this.btnCapNhatDiemCP.Location = new System.Drawing.Point(480, 444);
+            this.btnCapNhatDiemCP.Location = new System.Drawing.Point(477, 478);
             this.btnCapNhatDiemCP.Name = "btnCapNhatDiemCP";
             this.btnCapNhatDiemCP.Size = new System.Drawing.Size(87, 37);
             this.btnCapNhatDiemCP.TabIndex = 14;
@@ -1003,7 +1003,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(171, 388);
+            this.label6.Location = new System.Drawing.Point(142, 410);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(52, 13);
             this.label6.TabIndex = 11;
@@ -1012,7 +1012,7 @@
             // slbDoiChoiCP
             // 
             this.slbDoiChoiCP.FormattingEnabled = true;
-            this.slbDoiChoiCP.Location = new System.Drawing.Point(223, 384);
+            this.slbDoiChoiCP.Location = new System.Drawing.Point(194, 406);
             this.slbDoiChoiCP.Name = "slbDoiChoiCP";
             this.slbDoiChoiCP.Size = new System.Drawing.Size(370, 21);
             this.slbDoiChoiCP.TabIndex = 10;

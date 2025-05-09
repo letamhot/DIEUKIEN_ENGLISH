@@ -62,7 +62,7 @@ namespace DK_Project
             app = new server();
             connecServer();
 
-            //addMessage = new AddMessage(OnAddMessage);
+            addMessage = new AddMessage(OnAddMessage);
         }
 
         public TrinhDieuKhien(int cuocThiId)
@@ -205,32 +205,52 @@ namespace DK_Project
 
                         if (objDoi != null)
                         {
+                            // ➤ Chỉ gán id_teamplaying nếu là thí sinh
+                            if (objDoi.vaitro == "TS")
+                            {
+                                id_teamplaying = doiId;
+                            }
+
                             if (spl[3] == "on")
                             {
-                                accessDataConnected(dgvConnected, true, objDoi);
-                            }
-                            else
-                            {
+                                if (objDoi.vaitro == "TS")
+                                {
+                                    MessageBox.Show($"{objDoi.vaitro} đã kết nối: {objDoi.tennguoichoi}");
 
-                                accessDataConnected(dgvConnected, false, objDoi);
-                                MessageBox.Show("Thí sinh: " + objDoi.tennguoichoi + " ngắt kết nối!");
+                                    accessDataConnected(dgvConnected, true, objDoi);
+                                }
+                                else if (objDoi.vaitro == "MC" || objDoi.vaitro == "MH")
+                                {
+                                    MessageBox.Show($"{objDoi.vaitro} đã kết nối: {objDoi.tennguoichoi}");
+                                    accessDataConnected(dgvConnected, true, objDoi);
+
+                                }
                             }
+                            else // "off"
+                            {
+                                // 🛑 Kiểm tra kỹ lại: chỉ xử lý nếu đúng vai trò
+                                if (objDoi.vaitro == "TS")
+                                {
+                                    // Bổ sung: tránh gọi lại nếu đội đã ngắt kết nối trước đó
+                                    if (dgvConnected.Rows.Cast<DataGridViewRow>().Any(row =>
+                                          row.Cells[0].Value?.ToString() == objDoi.doiid.ToString()))
+                                    {
+                                        accessDataConnected(dgvConnected, false, objDoi);
+                                        MessageBox.Show("Thí sinh: " + objDoi.tennguoichoi + " ngắt kết nối!");
+                                    }
+                                }
+                                else if (objDoi.vaitro == "MC" || objDoi.vaitro == "MH")
+                                {
+                                    accessDataConnected(dgvConnected, false, objDoi);
+
+                                    MessageBox.Show($"{objDoi.vaitro}: {objDoi.tennguoichoi} ngắt kết nối!");
+                                    // ❌ Không gọi accessDataConnected
+                                }
+                            }
+
+
                         }
                     }
-                }
-
-                if (action.Equals("playkhoidong"))
-                {
-                    if (spl[3] == "goi1")
-                    {
-                        disableGoiCauHoiKhoiDong(1);
-                        lsDanhSachCauHoiKhoiDong = getDsCauHoiByGoiId(int.Parse(spl[0]));
-                        loadDanhSachCauHoiKD(lsDanhSachCauHoiKhoiDong);
-                    }
-                }
-                if (action.Equals("playthuthach"))
-                {
-                    updateKetQua(int.Parse(spl[3]));
                 }
             }
             Console.WriteLine(sMessage);
@@ -301,6 +321,8 @@ namespace DK_Project
             {
                 for (int i = 0; i < lsDanhSachCauHoiKhoiDong.Count; i++)
                 {
+                    _entity.Entry(lsDanhSachCauHoiKhoiDong[i]).Reload(); // ⚠️ Nạp lại từ DB
+
                     DataGridViewRow dataGridViewRow = (DataGridViewRow)grvDanhSachCauHoiKD.Rows[0].Clone();
                     dataGridViewRow.Cells[0].Value = lsDanhSachCauHoiKhoiDong[i].noidungcauhoi;
                     dataGridViewRow.Cells[1].Value = lsDanhSachCauHoiKhoiDong[i].dapan;
@@ -701,6 +723,8 @@ namespace DK_Project
             //displayPoint(lvBangDiemKD);
             time = 60;
             lblThoiGian.Text = time.ToString();
+            btnKetThucKD.Enabled = false;
+            btnKDNext.Enabled = false;
         }
 
         private void btnKDGoi1_Click(object sender, EventArgs e)
@@ -913,6 +937,8 @@ namespace DK_Project
             ds_cauhoithuthach cauHoi = _entity.ds_cauhoithuthach.FirstOrDefault(x => x.vitri == 1 && x.cuocthiid == cuocThiHienTai.cuocthiid);
             if (cauHoi != null)
             {
+                _entity.Entry(cauHoi).Reload(); // ⚠️ Nạp lại từ DB
+
                 currentCau = cauHoi.cauhoiid;
                 rTxtCauHoi.Text = cauHoi.noidung;
                 lblDapAn.Text = cauHoi.dapantext + "\n" + cauHoi.dapanABC;
@@ -934,6 +960,8 @@ namespace DK_Project
             ds_cauhoithuthach cauHoi = _entity.ds_cauhoithuthach.FirstOrDefault(x => x.vitri == 2 && x.cuocthiid == cuocThiHienTai.cuocthiid);
             if (cauHoi != null)
             {
+                _entity.Entry(cauHoi).Reload(); // ⚠️ Nạp lại từ DB
+
                 currentCau = cauHoi.cauhoiid;
                 rTxtCauHoi.Text = cauHoi.noidung;
                 lblDapAn.Text = cauHoi.dapantext + "\n" + cauHoi.dapanABC;
@@ -1130,6 +1158,8 @@ namespace DK_Project
         {
             var doiChoi = _entity.ds_doi.Find(int.Parse(slbDoiChoiCP.SelectedValue.ToString()));
             ds_goicaudiscovery cauHoiPhu = _entity.ds_goicaudiscovery.FirstOrDefault(x => x.vitri == 1 && x.cuocthiid == cuocThiHienTai.cuocthiid && x.doithiid == doiChoi.doiid);
+            _entity.Entry(cauHoiPhu).Reload(); // ⚠️ Nạp lại từ DB
+
             cauHoiPhu.trangthailatAnhPhu = 1;
             cauHoiPhuCurrent = cauHoiPhu;
             btnCPCau1.Text = "";
@@ -1144,6 +1174,8 @@ namespace DK_Project
         {
             var doiChoi = _entity.ds_doi.Find(int.Parse(slbDoiChoiCP.SelectedValue.ToString()));
             ds_goicaudiscovery cauHoiPhu = _entity.ds_goicaudiscovery.FirstOrDefault(x => x.vitri == 2 && x.cuocthiid == cuocThiHienTai.cuocthiid && x.doithiid == doiChoi.doiid);
+            _entity.Entry(cauHoiPhu).Reload(); // ⚠️ Nạp lại từ DB
+
             cauHoiPhu.trangthailatAnhPhu = 1;
             cauHoiPhuCurrent = cauHoiPhu;
             btnCPCau2.Text = "";
@@ -1155,7 +1187,9 @@ namespace DK_Project
         private void btnCPCau3_Click(object sender, EventArgs e)
         {
             var doiChoi = _entity.ds_doi.Find(int.Parse(slbDoiChoiCP.SelectedValue.ToString()));
-            ds_goicaudiscovery cauHoiPhu = _entity.ds_goicaudiscovery.FirstOrDefault(x => x.vitri == 3 && x.cuocthiid == cuocThiHienTai.cuocthiid && x.doithiid == doiChoi.doiid); 
+            ds_goicaudiscovery cauHoiPhu = _entity.ds_goicaudiscovery.FirstOrDefault(x => x.vitri == 3 && x.cuocthiid == cuocThiHienTai.cuocthiid && x.doithiid == doiChoi.doiid);
+            _entity.Entry(cauHoiPhu).Reload(); // ⚠️ Nạp lại từ DB
+
             cauHoiPhu.trangthailatAnhPhu = 1;
             cauHoiPhuCurrent = cauHoiPhu;
             btnCPCau3.Text = "";
@@ -1168,7 +1202,9 @@ namespace DK_Project
         private void btnCPCau4_Click(object sender, EventArgs e)
         {
             var doiChoi = _entity.ds_doi.Find(int.Parse(slbDoiChoiCP.SelectedValue.ToString()));
-            ds_goicaudiscovery cauHoiPhu = _entity.ds_goicaudiscovery.FirstOrDefault(x => x.vitri == 4 && x.cuocthiid == cuocThiHienTai.cuocthiid && x.doithiid == doiChoi.doiid); 
+            ds_goicaudiscovery cauHoiPhu = _entity.ds_goicaudiscovery.FirstOrDefault(x => x.vitri == 4 && x.cuocthiid == cuocThiHienTai.cuocthiid && x.doithiid == doiChoi.doiid);
+            _entity.Entry(cauHoiPhu).Reload(); // ⚠️ Nạp lại từ DB
+
             cauHoiPhu.trangthailatAnhPhu = 1;
             cauHoiPhuCurrent = cauHoiPhu;
             btnCPCau4.Text = "";
@@ -1180,7 +1216,9 @@ namespace DK_Project
         private void btnCPCau5_Click(object sender, EventArgs e)
         {
             var doiChoi = _entity.ds_doi.Find(int.Parse(slbDoiChoiCP.SelectedValue.ToString()));
-            ds_goicaudiscovery cauHoiPhu = _entity.ds_goicaudiscovery.FirstOrDefault(x => x.vitri == 5 && x.cuocthiid == cuocThiHienTai.cuocthiid && x.doithiid == doiChoi.doiid); 
+            ds_goicaudiscovery cauHoiPhu = _entity.ds_goicaudiscovery.FirstOrDefault(x => x.vitri == 5 && x.cuocthiid == cuocThiHienTai.cuocthiid && x.doithiid == doiChoi.doiid);
+            _entity.Entry(cauHoiPhu).Reload(); // ⚠️ Nạp lại từ DB
+
             cauHoiPhu.trangthailatAnhPhu = 1;
             cauHoiPhuCurrent = cauHoiPhu;
             btnCPCau5.Text = "";
@@ -1192,7 +1230,9 @@ namespace DK_Project
         private void btnCPCau6_Click(object sender, EventArgs e)
         {
             var doiChoi = _entity.ds_doi.Find(int.Parse(slbDoiChoiCP.SelectedValue.ToString()));
-            ds_goicaudiscovery cauHoiPhu = _entity.ds_goicaudiscovery.FirstOrDefault(x => x.vitri == 6 && x.cuocthiid == cuocThiHienTai.cuocthiid && x.doithiid == doiChoi.doiid); 
+            ds_goicaudiscovery cauHoiPhu = _entity.ds_goicaudiscovery.FirstOrDefault(x => x.vitri == 6 && x.cuocthiid == cuocThiHienTai.cuocthiid && x.doithiid == doiChoi.doiid);
+            _entity.Entry(cauHoiPhu).Reload(); // ⚠️ Nạp lại từ DB
+
             cauHoiPhu.trangthailatAnhPhu = 1;
             cauHoiPhuCurrent = cauHoiPhu;
             btnCPCau6.Text = "";
@@ -1331,6 +1371,8 @@ namespace DK_Project
             time = 20;
             lblThoiGian.Text = time.ToString();
             var cauhoiVD = _entity.ds_goicauhoishining.FirstOrDefault(x => x.vitri == 1 && x.cuocthiid == cuocThiHienTai.cuocthiid);
+            _entity.Entry(cauhoiVD).Reload(); // ⚠️ Nạp lại từ DB
+
             currentCau = cauhoiVD.cauhoiid;
             rTxtCauHoiToaSang.Text = cauhoiVD.noidungcauhoi;
             lblDapAnToaSang.Text = cauhoiVD.dapan;
@@ -1470,6 +1512,8 @@ namespace DK_Project
             time = 20;
             lblThoiGian.Text = time.ToString();
             var cauhoiVD = _entity.ds_goicauhoishining.FirstOrDefault(x => x.vitri == 2 && x.cuocthiid == cuocThiHienTai.cuocthiid);
+            _entity.Entry(cauhoiVD).Reload(); // ⚠️ Nạp lại từ DB
+
             currentCau = cauhoiVD.cauhoiid;
             rTxtCauHoiToaSang.Text = cauhoiVD.noidungcauhoi;
             lblDapAnToaSang.Text = cauhoiVD.dapan;
@@ -1492,6 +1536,8 @@ namespace DK_Project
             ds_cauhoithuthach cauHoi = _entity.ds_cauhoithuthach.FirstOrDefault(x => x.vitri == 3 && x.cuocthiid == cuocThiHienTai.cuocthiid);
             if (cauHoi != null)
             {
+                _entity.Entry(cauHoi).Reload(); // ⚠️ Nạp lại từ DB
+
                 currentCau = cauHoi.cauhoiid;
                 rTxtCauHoi.Text = cauHoi.noidung;
                 lblDapAn.Text = cauHoi.dapantext + "\n" + cauHoi.dapanABC;
@@ -1602,9 +1648,13 @@ namespace DK_Project
             ds_cauhoithuthach cauHoi = _entity.ds_cauhoithuthach.FirstOrDefault(x => x.vitri == 4 && x.cuocthiid == cuocThiHienTai.cuocthiid);
             if (cauHoi != null)
             {
+                _entity.Entry(cauHoi).Reload(); // ⚠️ Nạp lại từ DB
+
                 currentCau = cauHoi.cauhoiid;
                 rTxtCauHoi.Text = cauHoi.noidung;
                 lblDapAn.Text = cauHoi.dapantext + "\n" + cauHoi.dapanABC;
+                //fullPath = directoryPath + "\\Resources\\Video\\" + cauHoi.urlcauhoi;
+                //axWinMedia.URL = fullPath;
             }
             disableButtonKP((int)cauHoi.vitri);
             SendEvent("0,ser,playthuthach," + currentCau + ",ready," + cuocThiHienTai.cuocthiid);
@@ -1617,6 +1667,8 @@ namespace DK_Project
             time = 20;
             lblThoiGian.Text = time.ToString();
             var cauhoiVD = _entity.ds_goicauhoishining.FirstOrDefault(x => x.vitri == 3 && x.cuocthiid == cuocThiHienTai.cuocthiid);
+            _entity.Entry(cauhoiVD).Reload(); // ⚠️ Nạp lại từ DB
+
             currentCau = cauhoiVD.cauhoiid;
             rTxtCauHoiToaSang.Text = cauhoiVD.noidungcauhoi;
             lblDapAnToaSang.Text = cauhoiVD.dapan;
@@ -1636,6 +1688,9 @@ namespace DK_Project
             time = 20;
             lblThoiGian.Text = time.ToString();
             var cauhoiVD = _entity.ds_goicauhoishining.FirstOrDefault(x => x.vitri == 4 && x.cuocthiid == cuocThiHienTai.cuocthiid);
+
+            _entity.Entry(cauhoiVD).Reload(); // ⚠️ Nạp lại từ DB
+
             currentCau = cauhoiVD.cauhoiid;
             rTxtCauHoiToaSang.Text = cauhoiVD.noidungcauhoi;
             lblDapAnToaSang.Text = cauhoiVD.dapan;
@@ -1655,6 +1710,8 @@ namespace DK_Project
             time = 20;
             lblThoiGian.Text = time.ToString();
             var cauhoiVD = _entity.ds_goicauhoishining.FirstOrDefault(x => x.vitri == 5 && x.cuocthiid == cuocThiHienTai.cuocthiid);
+            _entity.Entry(cauhoiVD).Reload(); // ⚠️ Nạp lại từ DB
+
             currentCau = cauhoiVD.cauhoiid;
             rTxtCauHoiToaSang.Text = cauhoiVD.noidungcauhoi;
             lblDapAnToaSang.Text = cauhoiVD.dapan;
@@ -1674,6 +1731,8 @@ namespace DK_Project
             time = 20;
             lblThoiGian.Text = time.ToString();
             var cauhoiVD = _entity.ds_goicauhoishining.FirstOrDefault(x => x.vitri == 6 && x.cuocthiid == cuocThiHienTai.cuocthiid);
+            _entity.Entry(cauhoiVD).Reload(); // ⚠️ Nạp lại từ DB
+
             currentCau = cauhoiVD.cauhoiid;
             rTxtCauHoiToaSang.Text = cauhoiVD.noidungcauhoi;
             lblDapAnToaSang.Text = cauhoiVD.dapan;
@@ -2109,6 +2168,8 @@ namespace DK_Project
             ds_cauhoithuthach cauHoi = _entity.ds_cauhoithuthach.FirstOrDefault(x => x.vitri == 5 && x.cuocthiid == cuocThiHienTai.cuocthiid);
             if (cauHoi != null)
             {
+                _entity.Entry(cauHoi).Reload(); // ⚠️ Nạp lại từ DB
+
                 currentCau = cauHoi.cauhoiid;
                 rTxtCauHoi.Text = cauHoi.noidung;
                 lblDapAn.Text = cauHoi.dapantext + "\n" + cauHoi.dapanABC;
@@ -2141,6 +2202,8 @@ namespace DK_Project
 
         private void btnReadyGoiKD_Click(object sender, EventArgs e)
         {
+            btnKetThucKD.Enabled = true;
+            btnKDNext.Enabled = true;
 
             SendEvent(cbxDoiChoi.SelectedValue.ToString() + ",ser,playkhoidong,0,0,ready");
         }

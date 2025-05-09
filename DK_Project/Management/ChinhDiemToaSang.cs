@@ -97,7 +97,7 @@ namespace DK_Project.Management
                         txtTenThiSinh.Text = _doi.tennguoichoi;
 
                         cbbThiSinh.SelectedItem = _doiId;
-                        cbbThiSinh.Text = "ĐỘI " + _doi.vitridoi + " - " + _doi.tennguoichoi + " - " + _doi.tendoi;
+                        cbbThiSinh.Text = "TEAM " + _doi.vitridoi + " - " + _doi.tennguoichoi + " - " + _doi.tendoi;
                     }
                     else
                     {
