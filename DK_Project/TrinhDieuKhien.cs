@@ -1781,6 +1781,8 @@ namespace DK_Project
         private void btnCau1kg_Click(object sender, EventArgs e)
         {
             ds_phanthikhangia cauHoi = _entity.ds_phanthikhangia.FirstOrDefault(x => x.vitri == 1 && x.cauthiid == cuocThiHienTai.cuocthiid);
+            _entity.Entry(cauHoi).Reload(); // ⚠️ Nạp lại từ DB
+
             if (cauHoi != null)
             {
                 currentCau = cauHoi.cauhoiid;
@@ -1795,6 +1797,8 @@ namespace DK_Project
         private void btnCau2kg_Click(object sender, EventArgs e)
         {
             ds_phanthikhangia cauHoi = _entity.ds_phanthikhangia.FirstOrDefault(x => x.vitri == 2 && x.cauthiid == cuocThiHienTai.cuocthiid);
+            _entity.Entry(cauHoi).Reload(); // ⚠️ Nạp lại từ DB
+
             if (cauHoi != null)
             {
                 currentCau = cauHoi.cauhoiid;
@@ -1809,6 +1813,8 @@ namespace DK_Project
         private void btnCau3kg_Click(object sender, EventArgs e)
         {
             ds_phanthikhangia cauHoi = _entity.ds_phanthikhangia.FirstOrDefault(x => x.vitri == 3 && x.cauthiid == cuocThiHienTai.cuocthiid);
+            _entity.Entry(cauHoi).Reload(); // ⚠️ Nạp lại từ DB
+
             if (cauHoi != null)
             {
                 currentCau = cauHoi.cauhoiid;
@@ -1823,6 +1829,7 @@ namespace DK_Project
         private void btnCau4kg_Click(object sender, EventArgs e)
         {
             ds_phanthikhangia cauHoi = _entity.ds_phanthikhangia.FirstOrDefault(x => x.vitri == 4 && x.cauthiid == cuocThiHienTai.cuocthiid);
+            _entity.Entry(cauHoi).Reload(); // ⚠️ Nạp lại từ DB
             if (cauHoi != null)
             {
                 currentCau = cauHoi.cauhoiid;
