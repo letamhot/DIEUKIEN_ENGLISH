@@ -252,6 +252,19 @@ namespace DK_Project
                         }
                     }
                 }
+                if (action.Equals("playkhoidong"))
+                {
+                    if (spl[3] == "goi1")
+                    {
+                        disableGoiCauHoiKhoiDong(1);
+                        lsDanhSachCauHoiKhoiDong = getDsCauHoiByGoiId(int.Parse(spl[0]));
+                        loadDanhSachCauHoiKD(lsDanhSachCauHoiKhoiDong);
+                    }
+                }
+                if (action.Equals("playthuthach"))
+                {
+                    updateKetQua(int.Parse(spl[3]));
+                }
             }
             Console.WriteLine(sMessage);
 
