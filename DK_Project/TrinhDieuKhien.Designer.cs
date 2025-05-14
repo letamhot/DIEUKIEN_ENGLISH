@@ -198,6 +198,7 @@
             this.btnCau2kg = new System.Windows.Forms.Button();
             this.btnCau1kg = new System.Windows.Forms.Button();
             this.tmMain = new System.Windows.Forms.Timer(this.components);
+            this.btnCapNhatDiemALL = new System.Windows.Forms.Button();
             this.grDsClient.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvConnected)).BeginInit();
             this.mnMain.SuspendLayout();
@@ -833,6 +834,7 @@
             // 
             // tbKPCS
             // 
+            this.tbKPCS.Controls.Add(this.btnCapNhatDiemALL);
             this.tbKPCS.Controls.Add(this.axWindowsMediaPlayer1);
             this.tbKPCS.Controls.Add(this.btnHienThi6Nut);
             this.tbKPCS.Controls.Add(this.btnResetDL);
@@ -1936,6 +1938,16 @@
             this.tmMain.Interval = 1000;
             this.tmMain.Tick += new System.EventHandler(this.tmMain_Tick);
             // 
+            // btnCapNhatDiemALL
+            // 
+            this.btnCapNhatDiemALL.Location = new System.Drawing.Point(587, 534);
+            this.btnCapNhatDiemALL.Name = "btnCapNhatDiemALL";
+            this.btnCapNhatDiemALL.Size = new System.Drawing.Size(134, 37);
+            this.btnCapNhatDiemALL.TabIndex = 41;
+            this.btnCapNhatDiemALL.Text = "Load Điểm tất cả thí sinh";
+            this.btnCapNhatDiemALL.UseVisualStyleBackColor = true;
+            this.btnCapNhatDiemALL.Click += new System.EventHandler(this.btnCapNhatDiemALL_Click);
+            // 
             // TrinhDieuKhien
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -2153,6 +2165,7 @@
         private System.Windows.Forms.Button btnKetThucKD;
         private System.Windows.Forms.Button btnNgoiSao;
         private AxWMPLib.AxWindowsMediaPlayer axWindowsMediaPlayer1;
+        private System.Windows.Forms.Button btnCapNhatDiemALL;
     }
 }
 

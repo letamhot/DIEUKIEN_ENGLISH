@@ -2270,6 +2270,31 @@ namespace DK_Project
             tmMain.Enabled = false; // Dừng timer
             SendEvent("0,ser,playkhamphachiase," + cauhoichudeId + ",0,stopTime");
 
+            // Kiểm tra xem có dữ liệu hợp lệ để hiển thị ảnh không
+            string sql = "SELECT * from ds_goicaudiscovery WHERE cuocthiid = " + cuocThiHienTai.cuocthiid +
+                         " and doithiid = " + int.Parse(slbDoiChoiCP.SelectedValue.ToString()) +
+                         " and trangthai = 'true'";
+
+            DataTable dt = sqlObject.getDataFromSql(sql, "").Tables[0];
+            if (dt != null && dt.Rows.Count > 0)
+            {
+                // Kiểm tra file ảnh đầu tiên có tồn tại không
+                string fileName = dt.Rows[0]["noidungthisinh"].ToString();
+                string fullPath = Path.Combine(directoryPath, "Resources", "pic", fileName);
+
+                if (File.Exists(fullPath))
+                {
+                    loadNoiDungCauHoiThiSinh(); // Gọi hàm hiển thị ảnh
+                    btnCPCau1.Visible = false;
+                    btnCPCau2.Visible = false;
+                    btnCPCau3.Visible = false;
+                    btnCPCau4.Visible = false;
+                    btnCPCau5.Visible = false;
+                    btnCPCau6.Visible = false;
+                }
+            }
+
+
         }
 
         private void btnStart_Click(object sender, EventArgs e)
@@ -2480,6 +2505,11 @@ namespace DK_Project
 
         }
 
+        private void btnCapNhatDiemALL_Click(object sender, EventArgs e)
+        {
+            capNhatTongDiem();
+            SendEvent("0,ser,playkhamphachiase," + cauhoichudeId + ",0,capnhatTongDiem");
+        }
 
         private void mnItemPhanThi_Click(object sender, EventArgs e)
         {
