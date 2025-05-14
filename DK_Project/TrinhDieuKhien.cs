@@ -2267,15 +2267,8 @@ namespace DK_Project
 
         private void btnDungThoiGian_Click(object sender, EventArgs e)
         {
-            loadNoiDungCauHoiThiSinh();
             tmMain.Enabled = false; // Dừng timer
             SendEvent("0,ser,playkhamphachiase," + cauhoichudeId + ",0,stopTime");
-            btnCPCau1.Visible = false;
-            btnCPCau2.Visible = false;
-            btnCPCau3.Visible = false;
-            btnCPCau4.Visible = false;
-            btnCPCau5.Visible = false;
-            btnCPCau6.Visible = false;
 
         }
 
