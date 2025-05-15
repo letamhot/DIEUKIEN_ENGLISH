@@ -1393,6 +1393,9 @@ namespace DK_Project
             _entity.SaveChanges();
             _currentQuestionIdForAnswer = currentCau;
             SendEvent("0,ser,playtoasang," + cuocThiHienTai.cuocthiid + "," + currentCau + ",ready");
+            cbNgoiSaoHiVong.Checked = false;
+            cbDungSaiVD.Checked = false;
+            cBDanhQuyenTraLoi.Checked = false;
 
         }
 
@@ -1535,8 +1538,10 @@ namespace DK_Project
             _currentQuestionIdForAnswer = currentCau;
 
             SendEvent("0,ser,playtoasang," + cuocThiHienTai.cuocthiid + "," + currentCau + ",ready");
+            cbNgoiSaoHiVong.Checked = false;
+            cbDungSaiVD.Checked = false;
+            cBDanhQuyenTraLoi.Checked = false;
 
- 
         }
 
         private void btnCau3KP_Click(object sender, EventArgs e)
@@ -1690,7 +1695,9 @@ namespace DK_Project
             _currentQuestionIdForAnswer = currentCau;
 
             SendEvent("0,ser,playtoasang," + cuocThiHienTai.cuocthiid + "," + currentCau + ",ready");
-
+            cbNgoiSaoHiVong.Checked = false;
+            cbDungSaiVD.Checked = false;
+            cBDanhQuyenTraLoi.Checked = false;
 
         }
 
@@ -1712,7 +1719,9 @@ namespace DK_Project
             _currentQuestionIdForAnswer = currentCau;
 
             SendEvent("0,ser,playtoasang," + cuocThiHienTai.cuocthiid + "," + currentCau + ",ready");
-
+            cbNgoiSaoHiVong.Checked = false;
+            cbDungSaiVD.Checked = false;
+            cBDanhQuyenTraLoi.Checked = false;
 
         }
 
@@ -1733,7 +1742,9 @@ namespace DK_Project
             _currentQuestionIdForAnswer = currentCau;
 
             SendEvent("0,ser,playtoasang," + cuocThiHienTai.cuocthiid + "," + currentCau + ",ready");
-
+            cbNgoiSaoHiVong.Checked = false;
+            cbDungSaiVD.Checked = false;
+            cBDanhQuyenTraLoi.Checked = false;
 
         }
 
@@ -1754,6 +1765,9 @@ namespace DK_Project
             _currentQuestionIdForAnswer = currentCau;
 
             SendEvent("0,ser,playtoasang," + cuocThiHienTai.cuocthiid + "," + currentCau + ",ready");
+            cbNgoiSaoHiVong.Checked = false;
+            cbDungSaiVD.Checked = false;
+            cBDanhQuyenTraLoi.Checked = false;
         }
         //hien thi cau tra loi
         private void btnCautraloi_Click(object sender, EventArgs e)
