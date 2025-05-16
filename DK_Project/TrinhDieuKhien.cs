@@ -2252,20 +2252,43 @@ namespace DK_Project
             ChinhDiemToaSang frmChinhDiemVD = new ChinhDiemToaSang(cuocThiHienTai.cuocthiid, goiVDCurrent, int.Parse(cbbDoiChoiVD.SelectedValue.ToString()));
             frmChinhDiemVD.ShowDialog();
         }
-        private void loadNoiDungCauHoiThiSinh()
+        private bool loadNoiDungCauHoiThiSinh()
         {
-            string sql = "SELECT * from ds_goicaudiscovery WHERE cuocthiid = " + cuocThiHienTai.cuocthiid + " and doithiid = " + int.Parse(slbDoiChoiCP.SelectedValue.ToString()) + " and trangthai = 'true'";
+            string sql = "SELECT * FROM ds_goicaudiscovery WHERE cuocthiid = " + cuocThiHienTai.cuocthiid +
+                         " AND doithiid = " + int.Parse(slbDoiChoiCP.SelectedValue.ToString()) +
+                         " AND trangthai = 'true'";
+
             DataTable dt = sqlObject.getDataFromSql(sql, "").Tables[0];
+            bool foundImage = false;
+
             if (dt != null && dt.Rows.Count > 0)
             {
                 for (int i = 0; i < dt.Rows.Count; i++)
                 {
                     DataRow dr = dt.Rows[i];
-                    pBCauHoiChinhCP.Image = Image.FromFile(directoryPath + "\\Resources\\pic\\" + dr["noidungthisinh"].ToString());
+                    string imageFileName = dr["noidungthisinh"].ToString();
 
+                    if (!string.IsNullOrWhiteSpace(imageFileName))
+                    {
+                        string imagePath = Path.Combine(directoryPath, "Resources", "pic", imageFileName);
+
+                        if (File.Exists(imagePath))
+                        {
+                            pBCauHoiChinhCP.Image = Image.FromFile(imagePath);
+                            foundImage = true;
+                        }
+                    }
                 }
             }
+
+            if (!foundImage)
+            {
+                MessageBox.Show("Không có hình ảnh hiển thị.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+
+            return foundImage;
         }
+
         private void btnHienThiDapAnChung_Click(object sender, EventArgs e)
         {
             SendEvent("0,ser,playthuthach," + currentCau + ",hienthidapanCT," + cuocThiHienTai.cuocthiid);
@@ -2274,10 +2297,21 @@ namespace DK_Project
 
         private void btnHienThiAnhThiSinh_Click(object sender, EventArgs e)
         {
-            loadNoiDungCauHoiThiSinh();
+            bool coAnh = loadNoiDungCauHoiThiSinh();
             tmMain.Enabled = false;
-            SendEvent("0,ser,playkhamphachiase," + cauhoichudeId + ",0,hienthianhthisinh");
+
+            if (coAnh)
+            {
+                btnHienThi6Nut.Enabled = true;
+                SendEvent("0,ser,playkhamphachiase," + cauhoichudeId + ",0,hienthianhthisinh");
+            }
+            else
+            {
+                btnHienThi6Nut.Enabled = false;
+
+            }
         }
+
 
         private void btnDungThoiGian_Click(object sender, EventArgs e)
         {

@@ -412,19 +412,19 @@
             // 
             // btnRefesh
             // 
-            this.btnRefesh.Location = new System.Drawing.Point(9, 298);
+            this.btnRefesh.Location = new System.Drawing.Point(89, 250);
             this.btnRefesh.Name = "btnRefesh";
-            this.btnRefesh.Size = new System.Drawing.Size(217, 34);
+            this.btnRefesh.Size = new System.Drawing.Size(229, 34);
             this.btnRefesh.TabIndex = 4;
-            this.btnRefesh.Text = "SHOW TỔNG ĐIỂM";
+            this.btnRefesh.Text = "HIỂN THỊ ĐIỂM VÀO BẢNG ĐIỂM";
             this.btnRefesh.UseVisualStyleBackColor = true;
             this.btnRefesh.Click += new System.EventHandler(this.btnRefesh_Click);
             // 
             // btnEnd
             // 
-            this.btnEnd.Location = new System.Drawing.Point(262, 263);
+            this.btnEnd.Location = new System.Drawing.Point(0, 299);
             this.btnEnd.Name = "btnEnd";
-            this.btnEnd.Size = new System.Drawing.Size(99, 23);
+            this.btnEnd.Size = new System.Drawing.Size(60, 23);
             this.btnEnd.TabIndex = 3;
             this.btnEnd.Text = "Kết thúc cuộc thi";
             this.btnEnd.UseVisualStyleBackColor = true;
@@ -433,11 +433,11 @@
             // 
             // btnCapNhatDiemMain
             // 
-            this.btnCapNhatDiemMain.Location = new System.Drawing.Point(139, 263);
+            this.btnCapNhatDiemMain.Location = new System.Drawing.Point(89, 290);
             this.btnCapNhatDiemMain.Name = "btnCapNhatDiemMain";
-            this.btnCapNhatDiemMain.Size = new System.Drawing.Size(99, 23);
+            this.btnCapNhatDiemMain.Size = new System.Drawing.Size(229, 42);
             this.btnCapNhatDiemMain.TabIndex = 2;
-            this.btnCapNhatDiemMain.Text = "Cập nhật điểm";
+            this.btnCapNhatDiemMain.Text = "HIỂN THỊ TỔNG ĐIỂM LÊN MÀN HÌNH";
             this.btnCapNhatDiemMain.UseVisualStyleBackColor = true;
             this.btnCapNhatDiemMain.Click += new System.EventHandler(this.btnCapNhatDiemMain_Click);
             // 
@@ -446,8 +446,9 @@
             this.cbBMainVongThi.FormattingEnabled = true;
             this.cbBMainVongThi.Location = new System.Drawing.Point(0, 265);
             this.cbBMainVongThi.Name = "cbBMainVongThi";
-            this.cbBMainVongThi.Size = new System.Drawing.Size(121, 21);
+            this.cbBMainVongThi.Size = new System.Drawing.Size(74, 21);
             this.cbBMainVongThi.TabIndex = 1;
+            this.cbBMainVongThi.Visible = false;
             // 
             // lvBangDiemMain
             // 
