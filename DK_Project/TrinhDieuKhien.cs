@@ -920,22 +920,22 @@ namespace DK_Project
                 {
                     if (doi.vitridoi == 1)
                     {
-                        txtphan2doi1traloi.Text = cautraloi;
+                        txtphan2doi1traloi.Text = cautraloi.ToUpper();
                         txtphan2doi1thoigian.Text = thoigiantraloi;
                     }
                     if (doi.vitridoi == 2)
                     {
-                        txtphan2doi2traloi.Text = cautraloi;
+                        txtphan2doi2traloi.Text = cautraloi.ToUpper();
                         txtphan2doi2thoigian.Text = thoigiantraloi;
                     }
                     if (doi.vitridoi == 3)
                     {
-                        txtphan2doi3traloi.Text = cautraloi;
+                        txtphan2doi3traloi.Text = cautraloi.ToUpper();
                         txtphan2doi3thoigian.Text = thoigiantraloi;
                     }
                     if (doi.vitridoi == 4)
                     {
-                        txtphan2doi4traloi.Text = cautraloi;
+                        txtphan2doi4traloi.Text = cautraloi.ToUpper();
                         txtphan2doi4thoigian.Text = thoigiantraloi;
                     }
                 }
