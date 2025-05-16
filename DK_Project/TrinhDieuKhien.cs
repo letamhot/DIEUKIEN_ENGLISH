@@ -2515,6 +2515,11 @@ namespace DK_Project
                               +","+ _currentQuestionIdForAnswer + ",start_ngoisaohivong");
                 }
             }
+            var ts = _entity.ds_goicauhoishining.Find(_currentQuestionIdForAnswer);
+            if (ts != null) {
+                ts.trangThai = 1;
+                _entity.SaveChanges();
+            }
             
 
         }
