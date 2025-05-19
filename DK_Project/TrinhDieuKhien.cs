@@ -1069,8 +1069,13 @@ namespace DK_Project
 
         private void loadNoiDungCauHoiCP()
         {
-            string sql = "SELECT * FROM ds_goicaudiscovery WHERE cuocthiid = " + cuocThiHienTai.cuocthiid + " AND doithiid = " + int.Parse(slbDoiChoiCP.SelectedValue.ToString()) + " AND trangthai = 'true'";
+            string sql = "SELECT * FROM ds_goicaudiscovery WHERE cuocthiid = " + cuocThiHienTai.cuocthiid +
+                         " AND doithiid = " + int.Parse(slbDoiChoiCP.SelectedValue.ToString()) +
+                         " AND trangthai = 'true'";
+
             DataTable dt = sqlObject.getDataFromSql(sql, "").Tables[0];
+
+            bool hasNoiDungThiSinh = false;
 
             if (dt != null && dt.Rows.Count > 0)
             {
@@ -1080,6 +1085,17 @@ namespace DK_Project
                     cauhoichudeId = int.Parse(dr["cauhoiid"].ToString());
                     lsCauHoiPhuCP = getListCauHoiPhuByChaId(cauhoichudeId);
                     rtbCauHoiChinh.Text = dr["chude"].ToString();
+
+                    // Kiểm tra noidungthisinh
+                    string ndThiSinh = dr["noidungthisinh"].ToString();
+                    if (!string.IsNullOrWhiteSpace(ndThiSinh))
+                    {
+                        string imagePath = Path.Combine(directoryPath, "Resources", "pic", ndThiSinh);
+                        if (File.Exists(imagePath))
+                        {
+                            hasNoiDungThiSinh = true;
+                        }
+                    }
 
                     // Ẩn các nút
                     btnCPCau1.Enabled = btnCPCau1.Visible = false;
@@ -1102,7 +1118,6 @@ namespace DK_Project
                     {
                         fullPath = Path.Combine(directoryPath, "Resources", "pic", fileName);
 
-                        // Hiển thị hình ảnh
                         if (File.Exists(fullPath))
                         {
                             pBCauHoiChinhCP.Image = Image.FromFile(fullPath);
@@ -1118,16 +1133,13 @@ namespace DK_Project
                     {
                         fullPath = Path.Combine(directoryPath, "Resources", "Video", fileName);
 
-                        // Phát video
                         if (File.Exists(fullPath))
                         {
                             axWindowsMediaPlayer1.URL = fullPath;
-                            axWindowsMediaPlayer1.settings.autoStart = false; // Không tự động phát
-                            axWindowsMediaPlayer1.Ctlcontrols.stop();        // Stop sẵn
-                            axWindowsMediaPlayer1.Visible = false;           // Ẩn đi ban đầu
+                            axWindowsMediaPlayer1.settings.autoStart = false;
+                            axWindowsMediaPlayer1.Ctlcontrols.stop();
                             axWindowsMediaPlayer1.SendToBack();
                             axWindowsMediaPlayer1.Visible = true;
-                            // Cho video nằm dưới
                         }
                         else
                         {
@@ -1140,7 +1152,12 @@ namespace DK_Project
                     }
                 }
             }
+
+            // Sau vòng lặp, xử lý nút theo tình trạng noidungthisinh
+            btnHienThiAnhThiSinh.Enabled = hasNoiDungThiSinh;
+            btnHienThi6Nut.Enabled = hasNoiDungThiSinh;
         }
+
 
 
         private List<ds_goicaudiscovery> getListCauHoiPhuByChaId(int chaID)
