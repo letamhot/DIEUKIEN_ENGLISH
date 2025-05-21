@@ -58,7 +58,8 @@
             "2",
             "3",
             "4",
-            "5"});
+            "5",
+            "6"});
             this.cbxVitri.Location = new System.Drawing.Point(327, 285);
             this.cbxVitri.Name = "cbxVitri";
             this.cbxVitri.Size = new System.Drawing.Size(164, 21);

@@ -199,6 +199,7 @@
             this.btnCau1kg = new System.Windows.Forms.Button();
             this.tmMain = new System.Windows.Forms.Timer(this.components);
             this.btnCapNhatDiemALL = new System.Windows.Forms.Button();
+            this.btnDuPhong = new System.Windows.Forms.Button();
             this.grDsClient.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvConnected)).BeginInit();
             this.mnMain.SuspendLayout();
@@ -763,6 +764,7 @@
             this.cbxDoiChoi.Name = "cbxDoiChoi";
             this.cbxDoiChoi.Size = new System.Drawing.Size(336, 21);
             this.cbxDoiChoi.TabIndex = 8;
+            this.cbxDoiChoi.SelectedIndexChanged += new System.EventHandler(this.cbxDoiChoi_SelectedIndexChanged);
             // 
             // label2
             // 
@@ -1132,6 +1134,7 @@
             // 
             // tbThuThach
             // 
+            this.tbThuThach.Controls.Add(this.btnDuPhong);
             this.tbThuThach.Controls.Add(this.btnCapNhatDiemManHinhTT);
             this.tbThuThach.Controls.Add(this.btnHienThiDapAnChung);
             this.tbThuThach.Controls.Add(this.btnChinhDiemKP);
@@ -1211,7 +1214,7 @@
             // 
             // btnCauPKP
             // 
-            this.btnCauPKP.Location = new System.Drawing.Point(594, 16);
+            this.btnCauPKP.Location = new System.Drawing.Point(526, 20);
             this.btnCauPKP.Name = "btnCauPKP";
             this.btnCauPKP.Size = new System.Drawing.Size(75, 23);
             this.btnCauPKP.TabIndex = 107;
@@ -1509,7 +1512,7 @@
             // 
             // btnCau4KP
             // 
-            this.btnCau4KP.Location = new System.Drawing.Point(507, 16);
+            this.btnCau4KP.Location = new System.Drawing.Point(439, 20);
             this.btnCau4KP.Name = "btnCau4KP";
             this.btnCau4KP.Size = new System.Drawing.Size(75, 23);
             this.btnCau4KP.TabIndex = 1;
@@ -1519,7 +1522,7 @@
             // 
             // btnCau3KP
             // 
-            this.btnCau3KP.Location = new System.Drawing.Point(426, 16);
+            this.btnCau3KP.Location = new System.Drawing.Point(358, 20);
             this.btnCau3KP.Name = "btnCau3KP";
             this.btnCau3KP.Size = new System.Drawing.Size(75, 23);
             this.btnCau3KP.TabIndex = 1;
@@ -1529,7 +1532,7 @@
             // 
             // btnCau2KP
             // 
-            this.btnCau2KP.Location = new System.Drawing.Point(342, 16);
+            this.btnCau2KP.Location = new System.Drawing.Point(274, 20);
             this.btnCau2KP.Name = "btnCau2KP";
             this.btnCau2KP.Size = new System.Drawing.Size(75, 23);
             this.btnCau2KP.TabIndex = 1;
@@ -1549,7 +1552,7 @@
             // 
             // btnCau1KP
             // 
-            this.btnCau1KP.Location = new System.Drawing.Point(261, 16);
+            this.btnCau1KP.Location = new System.Drawing.Point(193, 20);
             this.btnCau1KP.Name = "btnCau1KP";
             this.btnCau1KP.Size = new System.Drawing.Size(75, 23);
             this.btnCau1KP.TabIndex = 1;
@@ -1949,6 +1952,16 @@
             this.btnCapNhatDiemALL.UseVisualStyleBackColor = true;
             this.btnCapNhatDiemALL.Click += new System.EventHandler(this.btnCapNhatDiemALL_Click);
             // 
+            // btnDuPhong
+            // 
+            this.btnDuPhong.Location = new System.Drawing.Point(617, 20);
+            this.btnDuPhong.Name = "btnDuPhong";
+            this.btnDuPhong.Size = new System.Drawing.Size(122, 23);
+            this.btnDuPhong.TabIndex = 111;
+            this.btnDuPhong.Text = "Câu  dự phòng";
+            this.btnDuPhong.UseVisualStyleBackColor = true;
+            this.btnDuPhong.Click += new System.EventHandler(this.btnDuPhong_Click);
+            // 
             // TrinhDieuKhien
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -2167,6 +2180,7 @@
         private System.Windows.Forms.Button btnNgoiSao;
         private AxWMPLib.AxWindowsMediaPlayer axWindowsMediaPlayer1;
         private System.Windows.Forms.Button btnCapNhatDiemALL;
+        private System.Windows.Forms.Button btnDuPhong;
     }
 }
 

@@ -584,6 +584,8 @@ namespace DK_Project
                     lblThoiGian.Text = time.ToString();
                     lblThoiGian.Visible = true;
                     tmMain.Enabled = false;
+                    btnHienThiAnhThiSinh.Enabled = false;
+                    btnHienThi6Nut.Enabled = false;
                     SendEvent("0,ser,playkhamphachiase,0," + cuocThiHienTai.cuocthiid);
                     
                     break;
@@ -834,6 +836,9 @@ namespace DK_Project
                     break;
                 case 5:
                     btnCauPKP.Enabled = false;
+                    break;
+                case 6:
+                    btnDuPhong.Enabled = false;
                     break;
                 default:
                     break;
@@ -1909,6 +1914,7 @@ namespace DK_Project
             btnCau3KP.Enabled = true;
             btnCau4KP.Enabled = true;
             btnCauPKP.Enabled = true;
+            btnDuPhong.Enabled = true;
             btnStartKP.Enabled = true;
             txtphan2doi1traloi.Text = "";
             txtphan2doi2traloi.Text = "";
@@ -2364,27 +2370,54 @@ namespace DK_Project
 
         private void btnStart_Click(object sender, EventArgs e)
         {
-            if(rtbCauHoiChinh.Text == "" || rtbCauHoiChinh.Text == null)
+            if (rtbCauHoiChinh.Text == "" || rtbCauHoiChinh.Text == null)
             {
                 MessageBox.Show("Chưa có nội dung chủ đề");
                 return;
             }
+
             tmMain.Enabled = true;
             time = 180;
             lblThoiGian.Text = time.ToString();
-            // Kiểm tra nếu có video thì phát
-            if (!string.IsNullOrEmpty(axWindowsMediaPlayer1.URL))
-            {
-                axWindowsMediaPlayer1.Visible = true; // Hiện player
-                axWindowsMediaPlayer1.Ctlcontrols.play(); // Phát video
-            }
-            else
-            {
-                axWindowsMediaPlayer1.Visible = false; // Tắt player
 
-                axWindowsMediaPlayer1.Ctlcontrols.stop(); // Tắt video
+            // Tìm nội dung của câu hỏi từ cơ sở dữ liệu theo cauhoichudeId
+            string sql = "SELECT noidungchude FROM ds_goicaudiscovery WHERE cauhoiid = " + cauhoichudeId;
+            DataTable dt = sqlObject.getDataFromSql(sql, "").Tables[0];
 
+            if (dt != null && dt.Rows.Count > 0)
+            {
+                string fileName = dt.Rows[0]["noidungchude"].ToString();
+                string extension = Path.GetExtension(fileName).ToLower();
+
+                if (!string.IsNullOrEmpty(fileName))
+                {
+                    if (extension == ".mp4" || extension == ".avi" || extension == ".mov" || extension == ".wmv" || extension == ".mkv")
+                    {
+                        string videoPath = Path.Combine(directoryPath, "Resources", "Video", fileName);
+                        if (File.Exists(videoPath))
+                        {
+                            axWindowsMediaPlayer1.URL = videoPath;
+                            axWindowsMediaPlayer1.Visible = true;
+                            axWindowsMediaPlayer1.settings.autoStart = true;
+                            axWindowsMediaPlayer1.Ctlcontrols.play();
+                            pBCauHoiChinhCP.Visible = false;
+                        }
+                        else
+                        {
+                            MessageBox.Show("Không tìm thấy video: " + videoPath);
+                            axWindowsMediaPlayer1.Visible = false;
+                            axWindowsMediaPlayer1.Ctlcontrols.stop();
+
+                        }
+                    }
+                    else
+                    {
+                        axWindowsMediaPlayer1.Visible = false;
+                    }
+                }
             }
+
+            // Gửi sự kiện sau khi xử lý nội dung
             SendEvent("0,ser,playkhamphachiase," + cauhoichudeId + ",0,start");
         }
 
@@ -2579,6 +2612,34 @@ namespace DK_Project
         {
             capNhatTongDiem();
             SendEvent("0,ser,playkhamphachiase," + cauhoichudeId + ",0,capnhatTongDiem");
+        }
+
+        private void btnDuPhong_Click(object sender, EventArgs e)
+        {
+            resetKetQua();
+            tmMain.Enabled = false;
+            //axWinMedia.Ctlcontrols.stop();
+            time = 30;
+            lblThoiGian.Text = time.ToString();
+            ds_cauhoithuthach cauHoi = _entity.ds_cauhoithuthach.FirstOrDefault(x => x.vitri == 6 && x.cuocthiid == cuocThiHienTai.cuocthiid);
+            if (cauHoi != null)
+            {
+                _entity.Entry(cauHoi).Reload(); // ⚠️ Nạp lại từ DB
+
+                currentCau = cauHoi.cauhoiid;
+                rTxtCauHoi.Text = cauHoi.noidung;
+                lblDapAn.Text = cauHoi.dapantext + "\n" + cauHoi.dapanABC;
+                //fullPath = directoryPath + "\\Resources\\Video\\" + cauHoi.urlcauhoi;
+                //axWinMedia.URL = fullPath;
+            }
+            disableButtonKP((int)cauHoi.vitri);
+            SendEvent("0,ser,playthuthach," + currentCau + ",ready," + cuocThiHienTai.cuocthiid);
+        }
+
+        private void cbxDoiChoi_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            btnKetThucKD.Enabled = true;
+            btnKDNext.Enabled = true;
         }
 
         private void mnItemPhanThi_Click(object sender, EventArgs e)
