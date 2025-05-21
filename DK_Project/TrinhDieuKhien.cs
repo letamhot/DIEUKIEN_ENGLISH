@@ -1203,8 +1203,6 @@ namespace DK_Project
             SendEvent("0,ser,playkhamphachiase," + cauhoichudeId + "," + cauHoiPhuCurrent.cauhoiid + ",hienthimanh");
         }
 
-
-
         private void btnCPCau2_Click(object sender, EventArgs e)
         {
             var doiChoi = _entity.ds_doi.Find(int.Parse(slbDoiChoiCP.SelectedValue.ToString()));
@@ -1295,18 +1293,22 @@ namespace DK_Project
 
             int doithiId = int.Parse(slbDoiChoiCP.SelectedValue.ToString());
 
-            // Kiểm tra nếu điểm của đội thi & câu hỏi đã có trong bảng ds_diem
-            var diem = _entity.ds_diem.FirstOrDefault(x => x.doiid == doithiId && x.cauhoiid == cauhoichudeId && x.phanthiid == phanThiHienTai && x.cuocthiid == cuocThiHienTai.cuocthiid);
+            // Tìm điểm theo doiid + phanthiid + cuocthiid (bỏ cauhoiid)
+            var diem = _entity.ds_diem.FirstOrDefault(x =>
+                x.doiid == doithiId &&
+                x.phanthiid == 2 &&
+                x.cuocthiid == cuocThiHienTai.cuocthiid);
 
             if (diem != null)
             {
-                // Nếu đã có, thì cập nhật điểm tổng
+                // Nếu đã có điểm, chỉ cập nhật sodiem
                 diem.sodiem = result;
-                //diem.thoigiantraloi = int.Parse(lblThoiGian.Text);
+                // Optional: nếu muốn cập nhật luôn thời gian trả lời
+                diem.thoigiantraloi = int.Parse(lblThoiGian.Text);
             }
             else
             {
-                // Nếu chưa có, thì thêm mới
+                // Nếu chưa có, thêm mới bản ghi với cauhoiid
                 diem = new ds_diem
                 {
                     doiid = doithiId,
@@ -1319,20 +1321,20 @@ namespace DK_Project
                 _entity.ds_diem.Add(diem);
             }
 
-            _entity.SaveChanges(); // Lưu thay đổi
+            _entity.SaveChanges(); // Lưu thay đổi trước khi dùng diem.diemid
 
-            // Cập nhật điểm chi tiết của giám khảo
+            // Xử lý điểm chi tiết cho 3 giám khảo
             var chiTietDiems = _entity.ds_chitietdiem.Where(x => x.diemid == diem.diemid).ToList();
             if (chiTietDiems.Any())
             {
-                // Nếu có, cập nhật điểm của giám khảo
+                // Nếu có, cập nhật
                 chiTietDiems[0].sodiem = diemGK1;
                 chiTietDiems[1].sodiem = diemGK2;
                 chiTietDiems[2].sodiem = diemGK3;
             }
             else
             {
-                // Nếu chưa có, thì thêm mới
+                // Nếu chưa có, thêm mới
                 chiTietDiems = new List<ds_chitietdiem>
         {
             new ds_chitietdiem { diemid = diem.diemid, sodiem = diemGK1, ghichu = "Giám khảo 1" },
@@ -1342,14 +1344,11 @@ namespace DK_Project
                 _entity.ds_chitietdiem.AddRange(chiTietDiems);
             }
 
-            _entity.SaveChanges(); // Lưu thay đổi
-            //displayPointCP();
+            _entity.SaveChanges(); // Lưu thay đổi điểm chi tiết
 
             MessageBox.Show("Cập nhật điểm thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
             return result;
         }
-
-        
 
         private void capNhatTongDiem()
         {
@@ -2544,7 +2543,41 @@ namespace DK_Project
             lblDiemGK2.Text = "0";
             lblDiemGK3.Text = "0";
 
+            if (slbDoiChoiCP.SelectedValue == null)
+                return;
+
+            // Thử ép kiểu an toàn
+            if (!int.TryParse(slbDoiChoiCP.SelectedValue.ToString(), out int doiid))
+                return; // hoặc thông báo lỗi
+
+            // Tiếp tục xử lý khi ép kiểu thành công
+            var diem = _entity.ds_diem.FirstOrDefault(x =>
+                x.doiid == doiid &&
+                x.phanthiid == 2 &&
+                x.cuocthiid == cuocThiHienTai.cuocthiid);
+
+            if (diem != null)
+            {
+                var chiTiet = _entity.ds_chitietdiem
+                    .Where(x => x.diemid == diem.diemid)
+                    .OrderBy(x => x.ghichu)
+                    .ToList();
+
+                if (chiTiet.Count >= 3)
+                {
+                    lblDiemGK1.Text = chiTiet[0].sodiem.ToString();
+                    lblDiemGK2.Text = chiTiet[1].sodiem.ToString();
+                    lblDiemGK3.Text = chiTiet[2].sodiem.ToString();
+                }
+                else
+                {
+                    if (chiTiet.Count > 0) lblDiemGK1.Text = chiTiet[0].sodiem.ToString();
+                    if (chiTiet.Count > 1) lblDiemGK2.Text = chiTiet[1].sodiem.ToString();
+                    if (chiTiet.Count > 2) lblDiemGK3.Text = chiTiet[2].sodiem.ToString();
+                }
+            }
         }
+
 
         private void btnHienThiDapAn_Click(object sender, EventArgs e)
         {
