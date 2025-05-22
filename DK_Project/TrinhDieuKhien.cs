@@ -2557,6 +2557,8 @@ namespace DK_Project
 
             if (diem != null)
             {
+                lblThoiGian.Text = diem.thoigiantraloi.ToString();
+
                 var chiTiet = _entity.ds_chitietdiem
                     .Where(x => x.diemid == diem.diemid)
                     .OrderBy(x => x.ghichu)
