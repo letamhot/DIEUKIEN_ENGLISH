@@ -587,7 +587,7 @@ namespace DK_Project
                     btnHienThiAnhThiSinh.Enabled = false;
                     btnHienThi6Nut.Enabled = false;
                     SendEvent("0,ser,playkhamphachiase,0," + cuocThiHienTai.cuocthiid);
-                    
+
                     break;
                 case 3:
                     phanThiHienTai = 3;
@@ -597,13 +597,13 @@ namespace DK_Project
                     tmMain.Enabled = false;
                     SendEvent("0,ser,playthuthach,0," + cuocThiHienTai.cuocthiid);
                     break;
-                case 4: 
+                case 4:
                     phanThiHienTai = 4;
                     time = 20;
                     lblThoiGian.Text = time.ToString();
                     lblThoiGian.Visible = true;
                     tmMain.Enabled = false;
-                    SendEvent("0,ser,playtoasang,"  + cuocThiHienTai.cuocthiid + ",0,0");
+                    SendEvent("0,ser,playtoasang," + cuocThiHienTai.cuocthiid + ",0,0");
                     break;
                 case 5:
                     phanThiHienTai = 5;
@@ -639,7 +639,7 @@ namespace DK_Project
             }
             else
             {
-                if(phanThiHienTai == 2)
+                if (phanThiHienTai == 2)
                 {
                     time = time - 1;
                     lblThoiGian.Text = time.ToString();
@@ -649,7 +649,7 @@ namespace DK_Project
                     tmMain.Enabled = false;
                     lblThoiGian.Text = "END";
                 }
-                    
+
             }
         }
 
@@ -950,7 +950,7 @@ namespace DK_Project
         {
             tmMain.Enabled = false;
             time = 30;
-            lblThoiGian.Text = time.ToString(); 
+            lblThoiGian.Text = time.ToString();
             //axWinMedia.Ctlcontrols.stop();
             ds_cauhoithuthach cauHoi = _entity.ds_cauhoithuthach.FirstOrDefault(x => x.vitri == 1 && x.cuocthiid == cuocThiHienTai.cuocthiid);
             if (cauHoi != null)
@@ -1163,8 +1163,6 @@ namespace DK_Project
             btnHienThi6Nut.Enabled = hasNoiDungThiSinh;
         }
 
-
-
         private List<ds_goicaudiscovery> getListCauHoiPhuByChaId(int chaID)
         {
             List<ds_goicaudiscovery> lsResult = new List<ds_goicaudiscovery>();
@@ -1202,6 +1200,8 @@ namespace DK_Project
             _entity.SaveChanges();
             SendEvent("0,ser,playkhamphachiase," + cauhoichudeId + "," + cauHoiPhuCurrent.cauhoiid + ",hienthimanh");
         }
+
+
 
         private void btnCPCau2_Click(object sender, EventArgs e)
         {
@@ -1304,7 +1304,7 @@ namespace DK_Project
                 // Nếu đã có điểm, chỉ cập nhật sodiem
                 diem.sodiem = result;
                 // Optional: nếu muốn cập nhật luôn thời gian trả lời
-                diem.thoigiantraloi = int.Parse(lblThoiGian.Text);
+                //diem.thoigiantraloi = int.Parse(lblThoiGian.Text);
             }
             else
             {
@@ -1349,6 +1349,8 @@ namespace DK_Project
             MessageBox.Show("Cập nhật điểm thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
             return result;
         }
+
+
 
         private void capNhatTongDiem()
         {
@@ -2153,7 +2155,7 @@ namespace DK_Project
                         _entity.ds_diem.Remove(item);
                     }
                 }
-                List<ds_goicauhoishining> _dsVD = _entity.ds_goicauhoishining.Where(y => y.trangThai != 0  && y.cuocthiid == cuocThiHienTai.cuocthiid).ToList();
+                List<ds_goicauhoishining> _dsVD = _entity.ds_goicauhoishining.Where(y => y.trangThai != 0 && y.cuocthiid == cuocThiHienTai.cuocthiid).ToList();
                 if (_dsVD != null && _dsVD.Count > 0)
                 {
                     for (int i = 0; i < _dsVD.Count; i++)
@@ -2310,7 +2312,6 @@ namespace DK_Project
 
             return foundImage;
         }
-
         private void btnHienThiDapAnChung_Click(object sender, EventArgs e)
         {
             SendEvent("0,ser,playthuthach," + currentCau + ",hienthidapanCT," + cuocThiHienTai.cuocthiid);
@@ -2333,7 +2334,6 @@ namespace DK_Project
 
             }
         }
-
 
         private void btnDungThoiGian_Click(object sender, EventArgs e)
         {
@@ -2419,7 +2419,6 @@ namespace DK_Project
             // Gửi sự kiện sau khi xử lý nội dung
             SendEvent("0,ser,playkhamphachiase," + cauhoichudeId + ",0,start");
         }
-
         private void btnResetDL_Click(object sender, EventArgs e)
         {
             // Xóa dữ liệu giao diện
@@ -2484,7 +2483,7 @@ namespace DK_Project
             // Gửi sự kiện sau khi reset dữ liệu
             //SendEvent("0,ser,playkhamphachiase," + cauhoichudeId + "," + cauHoiPhuCurrent.cauhoiid + ",resetDuLieu");
         }
-        
+
         private void btnHienThi6Nut_Click(object sender, EventArgs e)
         {
             btnCPCau1.BackgroundImage = null;
@@ -2521,7 +2520,7 @@ namespace DK_Project
         private void btnCapNhatDiemCacManHinh_Click(object sender, EventArgs e)
         {
             capNhatTongDiem();
-            SendEvent(cbxDoiChoi.SelectedValue.ToString() + ",ser,playkhoidong,0,"+goiKDHienTai+",capNhatDiemManHinh");
+            SendEvent(cbxDoiChoi.SelectedValue.ToString() + ",ser,playkhoidong,0," + goiKDHienTai + ",capNhatDiemManHinh");
 
         }
 
@@ -2578,7 +2577,6 @@ namespace DK_Project
             }
         }
 
-
         private void btnHienThiDapAn_Click(object sender, EventArgs e)
         {
             if (_currentQuestionIdForAnswer > 0)
@@ -2629,15 +2627,16 @@ namespace DK_Project
                     SendEvent(cbbDoiChoiVD.SelectedValue.ToString()
                               + ",ser,playtoasang,"
                               + cuocThiHienTai.cuocthiid
-                              +","+ _currentQuestionIdForAnswer + ",start_ngoisaohivong");
+                              + "," + _currentQuestionIdForAnswer + ",start_ngoisaohivong");
                 }
             }
             var ts = _entity.ds_goicauhoishining.Find(_currentQuestionIdForAnswer);
-            if (ts != null) {
+            if (ts != null)
+            {
                 ts.trangThai = 1;
                 _entity.SaveChanges();
             }
-            
+
 
         }
 
@@ -2645,6 +2644,12 @@ namespace DK_Project
         {
             capNhatTongDiem();
             SendEvent("0,ser,playkhamphachiase," + cauhoichudeId + ",0,capnhatTongDiem");
+        }
+
+        private void cbxDoiChoi_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            btnKetThucKD.Enabled = true;
+            btnKDNext.Enabled = true;
         }
 
         private void btnDuPhong_Click(object sender, EventArgs e)
@@ -2667,12 +2672,6 @@ namespace DK_Project
             }
             disableButtonKP((int)cauHoi.vitri);
             SendEvent("0,ser,playthuthach," + currentCau + ",ready," + cuocThiHienTai.cuocthiid);
-        }
-
-        private void cbxDoiChoi_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            btnKetThucKD.Enabled = true;
-            btnKDNext.Enabled = true;
         }
 
         private void mnItemPhanThi_Click(object sender, EventArgs e)

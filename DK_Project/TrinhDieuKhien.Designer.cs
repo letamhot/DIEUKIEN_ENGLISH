@@ -53,9 +53,7 @@
             this.khởiTạoLạiCuộcThiToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.grbBangDiem = new System.Windows.Forms.GroupBox();
             this.btnRefesh = new System.Windows.Forms.Button();
-            this.btnEnd = new System.Windows.Forms.Button();
             this.btnCapNhatDiemMain = new System.Windows.Forms.Button();
-            this.cbBMainVongThi = new System.Windows.Forms.ComboBox();
             this.lvBangDiemMain = new System.Windows.Forms.ListView();
             this.clMainDoi = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.clMainSoDiem = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -94,6 +92,7 @@
             this.btnKDGoi2 = new System.Windows.Forms.Button();
             this.btnKDGoi1 = new System.Windows.Forms.Button();
             this.tbKPCS = new System.Windows.Forms.TabPage();
+            this.btnCapNhatDiemALL = new System.Windows.Forms.Button();
             this.axWindowsMediaPlayer1 = new AxWMPLib.AxWindowsMediaPlayer();
             this.btnHienThi6Nut = new System.Windows.Forms.Button();
             this.btnResetDL = new System.Windows.Forms.Button();
@@ -198,8 +197,9 @@
             this.btnCau2kg = new System.Windows.Forms.Button();
             this.btnCau1kg = new System.Windows.Forms.Button();
             this.tmMain = new System.Windows.Forms.Timer(this.components);
-            this.btnCapNhatDiemALL = new System.Windows.Forms.Button();
             this.btnDuPhong = new System.Windows.Forms.Button();
+            this.btnEnd = new System.Windows.Forms.Button();
+            this.cbBMainVongThi = new System.Windows.Forms.ComboBox();
             this.grDsClient.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvConnected)).BeginInit();
             this.mnMain.SuspendLayout();
@@ -413,43 +413,23 @@
             // 
             // btnRefesh
             // 
-            this.btnRefesh.Location = new System.Drawing.Point(89, 250);
+            this.btnRefesh.Location = new System.Drawing.Point(153, 251);
             this.btnRefesh.Name = "btnRefesh";
-            this.btnRefesh.Size = new System.Drawing.Size(229, 34);
+            this.btnRefesh.Size = new System.Drawing.Size(182, 34);
             this.btnRefesh.TabIndex = 4;
-            this.btnRefesh.Text = "HIỂN THỊ ĐIỂM VÀO BẢNG ĐIỂM";
+            this.btnRefesh.Text = "Hiển thị tổng điểm vào bảng điểm";
             this.btnRefesh.UseVisualStyleBackColor = true;
             this.btnRefesh.Click += new System.EventHandler(this.btnRefesh_Click);
             // 
-            // btnEnd
-            // 
-            this.btnEnd.Location = new System.Drawing.Point(0, 299);
-            this.btnEnd.Name = "btnEnd";
-            this.btnEnd.Size = new System.Drawing.Size(60, 23);
-            this.btnEnd.TabIndex = 3;
-            this.btnEnd.Text = "Kết thúc cuộc thi";
-            this.btnEnd.UseVisualStyleBackColor = true;
-            this.btnEnd.Visible = false;
-            this.btnEnd.Click += new System.EventHandler(this.btnEnd_Click);
-            // 
             // btnCapNhatDiemMain
             // 
-            this.btnCapNhatDiemMain.Location = new System.Drawing.Point(89, 290);
+            this.btnCapNhatDiemMain.Location = new System.Drawing.Point(138, 292);
             this.btnCapNhatDiemMain.Name = "btnCapNhatDiemMain";
-            this.btnCapNhatDiemMain.Size = new System.Drawing.Size(229, 42);
+            this.btnCapNhatDiemMain.Size = new System.Drawing.Size(222, 42);
             this.btnCapNhatDiemMain.TabIndex = 2;
-            this.btnCapNhatDiemMain.Text = "HIỂN THỊ TỔNG ĐIỂM LÊN MÀN HÌNH";
+            this.btnCapNhatDiemMain.Text = "Hiển thị tổng điểm lên màn hình";
             this.btnCapNhatDiemMain.UseVisualStyleBackColor = true;
             this.btnCapNhatDiemMain.Click += new System.EventHandler(this.btnCapNhatDiemMain_Click);
-            // 
-            // cbBMainVongThi
-            // 
-            this.cbBMainVongThi.FormattingEnabled = true;
-            this.cbBMainVongThi.Location = new System.Drawing.Point(0, 265);
-            this.cbBMainVongThi.Name = "cbBMainVongThi";
-            this.cbBMainVongThi.Size = new System.Drawing.Size(74, 21);
-            this.cbBMainVongThi.TabIndex = 1;
-            this.cbBMainVongThi.Visible = false;
             // 
             // lvBangDiemMain
             // 
@@ -871,6 +851,16 @@
             this.tbKPCS.Text = "Khám phá và chia sẻ";
             this.tbKPCS.UseVisualStyleBackColor = true;
             // 
+            // btnCapNhatDiemALL
+            // 
+            this.btnCapNhatDiemALL.Location = new System.Drawing.Point(587, 534);
+            this.btnCapNhatDiemALL.Name = "btnCapNhatDiemALL";
+            this.btnCapNhatDiemALL.Size = new System.Drawing.Size(134, 37);
+            this.btnCapNhatDiemALL.TabIndex = 41;
+            this.btnCapNhatDiemALL.Text = "Load Điểm tất cả thí sinh";
+            this.btnCapNhatDiemALL.UseVisualStyleBackColor = true;
+            this.btnCapNhatDiemALL.Click += new System.EventHandler(this.btnCapNhatDiemALL_Click);
+            // 
             // axWindowsMediaPlayer1
             // 
             this.axWindowsMediaPlayer1.Enabled = true;
@@ -1214,7 +1204,7 @@
             // 
             // btnCauPKP
             // 
-            this.btnCauPKP.Location = new System.Drawing.Point(526, 20);
+            this.btnCauPKP.Location = new System.Drawing.Point(594, 16);
             this.btnCauPKP.Name = "btnCauPKP";
             this.btnCauPKP.Size = new System.Drawing.Size(75, 23);
             this.btnCauPKP.TabIndex = 107;
@@ -1512,7 +1502,7 @@
             // 
             // btnCau4KP
             // 
-            this.btnCau4KP.Location = new System.Drawing.Point(439, 20);
+            this.btnCau4KP.Location = new System.Drawing.Point(507, 16);
             this.btnCau4KP.Name = "btnCau4KP";
             this.btnCau4KP.Size = new System.Drawing.Size(75, 23);
             this.btnCau4KP.TabIndex = 1;
@@ -1522,7 +1512,7 @@
             // 
             // btnCau3KP
             // 
-            this.btnCau3KP.Location = new System.Drawing.Point(358, 20);
+            this.btnCau3KP.Location = new System.Drawing.Point(426, 16);
             this.btnCau3KP.Name = "btnCau3KP";
             this.btnCau3KP.Size = new System.Drawing.Size(75, 23);
             this.btnCau3KP.TabIndex = 1;
@@ -1532,7 +1522,7 @@
             // 
             // btnCau2KP
             // 
-            this.btnCau2KP.Location = new System.Drawing.Point(274, 20);
+            this.btnCau2KP.Location = new System.Drawing.Point(342, 16);
             this.btnCau2KP.Name = "btnCau2KP";
             this.btnCau2KP.Size = new System.Drawing.Size(75, 23);
             this.btnCau2KP.TabIndex = 1;
@@ -1552,7 +1542,7 @@
             // 
             // btnCau1KP
             // 
-            this.btnCau1KP.Location = new System.Drawing.Point(193, 20);
+            this.btnCau1KP.Location = new System.Drawing.Point(261, 16);
             this.btnCau1KP.Name = "btnCau1KP";
             this.btnCau1KP.Size = new System.Drawing.Size(75, 23);
             this.btnCau1KP.TabIndex = 1;
@@ -1942,25 +1932,35 @@
             this.tmMain.Interval = 1000;
             this.tmMain.Tick += new System.EventHandler(this.tmMain_Tick);
             // 
-            // btnCapNhatDiemALL
-            // 
-            this.btnCapNhatDiemALL.Location = new System.Drawing.Point(587, 534);
-            this.btnCapNhatDiemALL.Name = "btnCapNhatDiemALL";
-            this.btnCapNhatDiemALL.Size = new System.Drawing.Size(134, 37);
-            this.btnCapNhatDiemALL.TabIndex = 41;
-            this.btnCapNhatDiemALL.Text = "Load Điểm tất cả thí sinh";
-            this.btnCapNhatDiemALL.UseVisualStyleBackColor = true;
-            this.btnCapNhatDiemALL.Click += new System.EventHandler(this.btnCapNhatDiemALL_Click);
-            // 
             // btnDuPhong
             // 
-            this.btnDuPhong.Location = new System.Drawing.Point(617, 20);
+            this.btnDuPhong.Location = new System.Drawing.Point(685, 16);
             this.btnDuPhong.Name = "btnDuPhong";
             this.btnDuPhong.Size = new System.Drawing.Size(122, 23);
             this.btnDuPhong.TabIndex = 111;
-            this.btnDuPhong.Text = "Câu  dự phòng";
+            this.btnDuPhong.Text = "Câu dự phòng";
             this.btnDuPhong.UseVisualStyleBackColor = true;
             this.btnDuPhong.Click += new System.EventHandler(this.btnDuPhong_Click);
+            // 
+            // btnEnd
+            // 
+            this.btnEnd.Location = new System.Drawing.Point(0, 302);
+            this.btnEnd.Name = "btnEnd";
+            this.btnEnd.Size = new System.Drawing.Size(99, 23);
+            this.btnEnd.TabIndex = 3;
+            this.btnEnd.Text = "Kết thúc cuộc thi";
+            this.btnEnd.UseVisualStyleBackColor = true;
+            this.btnEnd.Visible = false;
+            this.btnEnd.Click += new System.EventHandler(this.btnEnd_Click);
+            // 
+            // cbBMainVongThi
+            // 
+            this.cbBMainVongThi.FormattingEnabled = true;
+            this.cbBMainVongThi.Location = new System.Drawing.Point(0, 265);
+            this.cbBMainVongThi.Name = "cbBMainVongThi";
+            this.cbBMainVongThi.Size = new System.Drawing.Size(121, 21);
+            this.cbBMainVongThi.TabIndex = 1;
+            this.cbBMainVongThi.Visible = false;
             // 
             // TrinhDieuKhien
             // 
@@ -2119,7 +2119,6 @@
         private System.Windows.Forms.ToolStripMenuItem mnItemChinhPhuc;
         private System.Windows.Forms.ToolStripMenuItem mnItemVeDich;
         private System.Windows.Forms.Button btnCapNhatDiemMain;
-        private System.Windows.Forms.ComboBox cbBMainVongThi;
         private System.Windows.Forms.ListView lvBangDiemMain;
         private System.Windows.Forms.ColumnHeader clMainDoi;
         private System.Windows.Forms.ColumnHeader clMainSoDiem;
@@ -2143,7 +2142,6 @@
         private System.Windows.Forms.Button btnTrangThai;
         private System.Windows.Forms.Button btnResetKG;
         private System.Windows.Forms.TextBox rtbCauHoikg;
-        private System.Windows.Forms.Button btnEnd;
         private System.Windows.Forms.ToolStripMenuItem mnItemDsDoi;
         private System.Windows.Forms.Button btnReset;
         private System.Windows.Forms.Button btnXoaDL;
@@ -2181,6 +2179,7 @@
         private AxWMPLib.AxWindowsMediaPlayer axWindowsMediaPlayer1;
         private System.Windows.Forms.Button btnCapNhatDiemALL;
         private System.Windows.Forms.Button btnDuPhong;
+        private System.Windows.Forms.Button btnEnd;
+        private System.Windows.Forms.ComboBox cbBMainVongThi;
     }
 }
-
