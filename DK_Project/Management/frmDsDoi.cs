@@ -29,8 +29,9 @@ namespace DK_Project.Management
         }
         private void loadDsDoi()
         {
+            ds_cuocthi cuocthihientai = _entity.ds_cuocthi.FirstOrDefault(x => x.trangthai == true);
 
-            _doi = _entity.ds_doi.Where(x => x.vaitro == "TS").ToList();
+            _doi = _entity.ds_doi.Where(x => x.vaitro == "TS" && x.cuocthiid == cuocthihientai.cuocthiid).ToList();
             dgvDsDoi.DataSource = _doi;
             
         }

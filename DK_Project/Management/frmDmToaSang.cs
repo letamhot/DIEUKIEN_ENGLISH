@@ -313,7 +313,7 @@ namespace DK_Project.Management
                     int? vitri = TryParseInt(row["vitri"]);
                     int? sodiem = TryParseInt(row["sodiem"]);
                     bool? isvideo = TryParseBool(row["isvideo"]);
-                    bool? trangthai = TryParseBool(row["trangthai"]);
+                    int? trangthai = TryParseInt(row["trangthai"]);
 
                     string urlhinhanh = null;
 
@@ -326,14 +326,14 @@ namespace DK_Project.Management
                     ds_goicauhoishining newRecord = new ds_goicauhoishining
                     {
                         //goicauhoiid = goicauhoiid ?? 0,
-                        //noidungcauhoi = string.IsNullOrWhiteSpace(row["noidungcauhoi"]?.ToString()) ? null : row["noidungcauhoi"].ToString(),
-                        //dapan = string.IsNullOrWhiteSpace(row["dapan"]?.ToString()) ? null : row["dapan"].ToString(),
-                        //sodiem = sodiem ?? 0,
-                        //isvideo = isvideo ?? false,
-                        //urlhinhanh = urlhinhanh,
-                        //cuocthiid = cuocthiid ?? 0,
-                        //trangthai = trangthai ?? false,
-                        //vitri = vitri ?? 0
+                        noidungcauhoi = string.IsNullOrWhiteSpace(row["noidungcauhoi"]?.ToString()) ? null : row["noidungcauhoi"].ToString(),
+                        dapan = string.IsNullOrWhiteSpace(row["dapan"]?.ToString()) ? null : row["dapan"].ToString(),
+                        sodiem = sodiem ?? 0,
+                        isvideo = isvideo ?? false,
+                        urlhinhanh = urlhinhanh,
+                        cuocthiid = cuocthiid ?? 0,
+                        trangThai = trangthai ?? 0,
+                        vitri = vitri ?? 0
                     };
 
                     // Thêm đối tượng mới vào context

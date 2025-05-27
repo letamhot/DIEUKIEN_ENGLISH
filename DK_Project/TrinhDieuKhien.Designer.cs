@@ -53,7 +53,9 @@
             this.khởiTạoLạiCuộcThiToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.grbBangDiem = new System.Windows.Forms.GroupBox();
             this.btnRefesh = new System.Windows.Forms.Button();
+            this.btnEnd = new System.Windows.Forms.Button();
             this.btnCapNhatDiemMain = new System.Windows.Forms.Button();
+            this.cbBMainVongThi = new System.Windows.Forms.ComboBox();
             this.lvBangDiemMain = new System.Windows.Forms.ListView();
             this.clMainDoi = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.clMainSoDiem = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -120,6 +122,7 @@
             this.btnCPCau1 = new System.Windows.Forms.Button();
             this.pBCauHoiChinhCP = new System.Windows.Forms.PictureBox();
             this.tbThuThach = new System.Windows.Forms.TabPage();
+            this.btnDuPhong = new System.Windows.Forms.Button();
             this.btnCapNhatDiemManHinhTT = new System.Windows.Forms.Button();
             this.btnHienThiDapAnChung = new System.Windows.Forms.Button();
             this.btnChinhDiemKP = new System.Windows.Forms.Button();
@@ -197,9 +200,7 @@
             this.btnCau2kg = new System.Windows.Forms.Button();
             this.btnCau1kg = new System.Windows.Forms.Button();
             this.tmMain = new System.Windows.Forms.Timer(this.components);
-            this.btnDuPhong = new System.Windows.Forms.Button();
-            this.btnEnd = new System.Windows.Forms.Button();
-            this.cbBMainVongThi = new System.Windows.Forms.ComboBox();
+            this.btnLoadDanhSach = new System.Windows.Forms.Button();
             this.grDsClient.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvConnected)).BeginInit();
             this.mnMain.SuspendLayout();
@@ -421,6 +422,17 @@
             this.btnRefesh.UseVisualStyleBackColor = true;
             this.btnRefesh.Click += new System.EventHandler(this.btnRefesh_Click);
             // 
+            // btnEnd
+            // 
+            this.btnEnd.Location = new System.Drawing.Point(0, 302);
+            this.btnEnd.Name = "btnEnd";
+            this.btnEnd.Size = new System.Drawing.Size(99, 23);
+            this.btnEnd.TabIndex = 3;
+            this.btnEnd.Text = "Kết thúc cuộc thi";
+            this.btnEnd.UseVisualStyleBackColor = true;
+            this.btnEnd.Visible = false;
+            this.btnEnd.Click += new System.EventHandler(this.btnEnd_Click);
+            // 
             // btnCapNhatDiemMain
             // 
             this.btnCapNhatDiemMain.Location = new System.Drawing.Point(138, 292);
@@ -430,6 +442,15 @@
             this.btnCapNhatDiemMain.Text = "Hiển thị tổng điểm lên màn hình";
             this.btnCapNhatDiemMain.UseVisualStyleBackColor = true;
             this.btnCapNhatDiemMain.Click += new System.EventHandler(this.btnCapNhatDiemMain_Click);
+            // 
+            // cbBMainVongThi
+            // 
+            this.cbBMainVongThi.FormattingEnabled = true;
+            this.cbBMainVongThi.Location = new System.Drawing.Point(0, 265);
+            this.cbBMainVongThi.Name = "cbBMainVongThi";
+            this.cbBMainVongThi.Size = new System.Drawing.Size(121, 21);
+            this.cbBMainVongThi.TabIndex = 1;
+            this.cbBMainVongThi.Visible = false;
             // 
             // lvBangDiemMain
             // 
@@ -1172,6 +1193,16 @@
             this.tbThuThach.Text = "Thử thách";
             this.tbThuThach.UseVisualStyleBackColor = true;
             // 
+            // btnDuPhong
+            // 
+            this.btnDuPhong.Location = new System.Drawing.Point(685, 16);
+            this.btnDuPhong.Name = "btnDuPhong";
+            this.btnDuPhong.Size = new System.Drawing.Size(122, 23);
+            this.btnDuPhong.TabIndex = 111;
+            this.btnDuPhong.Text = "Câu dự phòng";
+            this.btnDuPhong.UseVisualStyleBackColor = true;
+            this.btnDuPhong.Click += new System.EventHandler(this.btnDuPhong_Click);
+            // 
             // btnCapNhatDiemManHinhTT
             // 
             this.btnCapNhatDiemManHinhTT.Location = new System.Drawing.Point(578, 58);
@@ -1552,6 +1583,7 @@
             // 
             // tbToaSang
             // 
+            this.tbToaSang.Controls.Add(this.btnLoadDanhSach);
             this.tbToaSang.Controls.Add(this.btnNgoiSao);
             this.tbToaSang.Controls.Add(this.btnHienThiDapAn);
             this.tbToaSang.Controls.Add(this.btnCapNhatDiemManHinhTS);
@@ -1650,7 +1682,7 @@
             // 
             // btnReady
             // 
-            this.btnReady.Location = new System.Drawing.Point(173, 33);
+            this.btnReady.Location = new System.Drawing.Point(121, 33);
             this.btnReady.Name = "btnReady";
             this.btnReady.Size = new System.Drawing.Size(139, 23);
             this.btnReady.TabIndex = 11;
@@ -1932,35 +1964,15 @@
             this.tmMain.Interval = 1000;
             this.tmMain.Tick += new System.EventHandler(this.tmMain_Tick);
             // 
-            // btnDuPhong
+            // btnLoadDanhSach
             // 
-            this.btnDuPhong.Location = new System.Drawing.Point(685, 16);
-            this.btnDuPhong.Name = "btnDuPhong";
-            this.btnDuPhong.Size = new System.Drawing.Size(122, 23);
-            this.btnDuPhong.TabIndex = 111;
-            this.btnDuPhong.Text = "Câu dự phòng";
-            this.btnDuPhong.UseVisualStyleBackColor = true;
-            this.btnDuPhong.Click += new System.EventHandler(this.btnDuPhong_Click);
-            // 
-            // btnEnd
-            // 
-            this.btnEnd.Location = new System.Drawing.Point(0, 302);
-            this.btnEnd.Name = "btnEnd";
-            this.btnEnd.Size = new System.Drawing.Size(99, 23);
-            this.btnEnd.TabIndex = 3;
-            this.btnEnd.Text = "Kết thúc cuộc thi";
-            this.btnEnd.UseVisualStyleBackColor = true;
-            this.btnEnd.Visible = false;
-            this.btnEnd.Click += new System.EventHandler(this.btnEnd_Click);
-            // 
-            // cbBMainVongThi
-            // 
-            this.cbBMainVongThi.FormattingEnabled = true;
-            this.cbBMainVongThi.Location = new System.Drawing.Point(0, 265);
-            this.cbBMainVongThi.Name = "cbBMainVongThi";
-            this.cbBMainVongThi.Size = new System.Drawing.Size(121, 21);
-            this.cbBMainVongThi.TabIndex = 1;
-            this.cbBMainVongThi.Visible = false;
+            this.btnLoadDanhSach.Location = new System.Drawing.Point(283, 23);
+            this.btnLoadDanhSach.Name = "btnLoadDanhSach";
+            this.btnLoadDanhSach.Size = new System.Drawing.Size(150, 42);
+            this.btnLoadDanhSach.TabIndex = 114;
+            this.btnLoadDanhSach.Text = "Giới thiệu về chủ đề của câu hỏi tiếp theo";
+            this.btnLoadDanhSach.UseVisualStyleBackColor = true;
+            this.btnLoadDanhSach.Click += new System.EventHandler(this.btnLoadDanhSach_Click);
             // 
             // TrinhDieuKhien
             // 
@@ -2181,5 +2193,6 @@
         private System.Windows.Forms.Button btnDuPhong;
         private System.Windows.Forms.Button btnEnd;
         private System.Windows.Forms.ComboBox cbBMainVongThi;
+        private System.Windows.Forms.Button btnLoadDanhSach;
     }
 }

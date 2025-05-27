@@ -1402,6 +1402,8 @@ namespace DK_Project
 
         private void btnGoi1VD_Click(object sender, EventArgs e)
         {
+            btnLoadDanhSach.Enabled = true;
+
             tmMain.Enabled = false;
             btnCau1VD.Enabled = false;
             time = 20;
@@ -2252,6 +2254,7 @@ namespace DK_Project
 
         private void btnReady_Click(object sender, EventArgs e)
         {
+            btnLoadDanhSach.Enabled = false;
             //ds_goicauhoivedich ds = _entity.ds_goicauhoivedich.FirstOrDefault(x => x.cuocthiid == cuocThiHienTai.cuocthiid);
             SendEvent("0,ser,playtoasang," + cuocThiHienTai.cuocthiid + ",0,hienthi5NutCauHoi");
 
@@ -2581,6 +2584,9 @@ namespace DK_Project
 
         private void btnHienThiDapAn_Click(object sender, EventArgs e)
         {
+            ds_goicauhoishining cauHoiVeDich = _entity.ds_goicauhoishining.Find(_currentQuestionIdForAnswer);
+            cauHoiVeDich.trangThai = 2;
+            _entity.SaveChanges();
             if (_currentQuestionIdForAnswer > 0)
             {
                 // Gửi sự kiện hiển thị đáp án
@@ -2674,6 +2680,12 @@ namespace DK_Project
             }
             disableButtonKP((int)cauHoi.vitri);
             SendEvent("0,ser,playthuthach," + currentCau + ",ready," + cuocThiHienTai.cuocthiid);
+        }
+
+        private void btnLoadDanhSach_Click(object sender, EventArgs e)
+        {
+            SendEvent("0,ser,playtoasang," + cuocThiHienTai.cuocthiid + "," + _currentQuestionIdForAnswer+",loadDanhSachCauHoi");
+
         }
 
         private void mnItemPhanThi_Click(object sender, EventArgs e)
