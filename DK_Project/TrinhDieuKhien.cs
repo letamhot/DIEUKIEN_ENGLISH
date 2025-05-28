@@ -603,6 +603,7 @@ namespace DK_Project
                     lblThoiGian.Text = time.ToString();
                     lblThoiGian.Visible = true;
                     tmMain.Enabled = false;
+                    btnLoadDanhSach.Enabled = false;
                     SendEvent("0,ser,playtoasang," + cuocThiHienTai.cuocthiid + ",0,0");
                     break;
                 case 5:
@@ -1548,6 +1549,8 @@ namespace DK_Project
 
         private void btnGoi2VD_Click(object sender, EventArgs e)
         {
+            btnLoadDanhSach.Enabled = true;
+
             tmMain.Enabled = false;
             btnCau2VD.Enabled = false;
             time = 20;
@@ -1705,6 +1708,8 @@ namespace DK_Project
 
         private void btnGoi3VD_Click(object sender, EventArgs e)
         {
+            btnLoadDanhSach.Enabled = true;
+
             tmMain.Enabled = false;
             btnCau3VD.Enabled = false;
             time = 20;
@@ -1728,6 +1733,8 @@ namespace DK_Project
 
         private void btnGoi4VD_Click(object sender, EventArgs e)
         {
+            btnLoadDanhSach.Enabled = true;
+
             tmMain.Enabled = false;
             btnCau4VD.Enabled = false;
             time = 20;
@@ -1752,6 +1759,8 @@ namespace DK_Project
 
         private void btnGoi5VD_Click(object sender, EventArgs e)
         {
+            btnLoadDanhSach.Enabled = true;
+
             tmMain.Enabled = false;
             btnCau5VD.Enabled = false;
             time = 20;
@@ -1775,6 +1784,7 @@ namespace DK_Project
 
         private void btnGoi6VD_Click(object sender, EventArgs e)
         {
+            btnLoadDanhSach.Enabled = true;
             tmMain.Enabled = false;
             btnCau6VD.Enabled = false;
             time = 20;
@@ -2031,6 +2041,8 @@ namespace DK_Project
             btnCau6VD.Enabled = true;
             rTxtCauHoiToaSang.Text = "";
             lblDapAnToaSang.Text = "";
+            btnReady.Enabled = true;
+            btnLoadDanhSach.Enabled = true;
             //lvBangDiemVD.Items.Clear();
             //lvBangDiemVD.Refresh();
         }

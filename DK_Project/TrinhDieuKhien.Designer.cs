@@ -164,6 +164,7 @@
             this.btnStartKP = new System.Windows.Forms.Button();
             this.btnCau1KP = new System.Windows.Forms.Button();
             this.tbToaSang = new System.Windows.Forms.TabPage();
+            this.btnLoadDanhSach = new System.Windows.Forms.Button();
             this.btnNgoiSao = new System.Windows.Forms.Button();
             this.btnHienThiDapAn = new System.Windows.Forms.Button();
             this.btnCapNhatDiemManHinhTS = new System.Windows.Forms.Button();
@@ -200,7 +201,6 @@
             this.btnCau2kg = new System.Windows.Forms.Button();
             this.btnCau1kg = new System.Windows.Forms.Button();
             this.tmMain = new System.Windows.Forms.Timer(this.components);
-            this.btnLoadDanhSach = new System.Windows.Forms.Button();
             this.grDsClient.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvConnected)).BeginInit();
             this.mnMain.SuspendLayout();
@@ -1195,7 +1195,7 @@
             // 
             // btnDuPhong
             // 
-            this.btnDuPhong.Location = new System.Drawing.Point(685, 16);
+            this.btnDuPhong.Location = new System.Drawing.Point(619, 16);
             this.btnDuPhong.Name = "btnDuPhong";
             this.btnDuPhong.Size = new System.Drawing.Size(122, 23);
             this.btnDuPhong.TabIndex = 111;
@@ -1235,7 +1235,7 @@
             // 
             // btnCauPKP
             // 
-            this.btnCauPKP.Location = new System.Drawing.Point(594, 16);
+            this.btnCauPKP.Location = new System.Drawing.Point(528, 16);
             this.btnCauPKP.Name = "btnCauPKP";
             this.btnCauPKP.Size = new System.Drawing.Size(75, 23);
             this.btnCauPKP.TabIndex = 107;
@@ -1533,7 +1533,7 @@
             // 
             // btnCau4KP
             // 
-            this.btnCau4KP.Location = new System.Drawing.Point(507, 16);
+            this.btnCau4KP.Location = new System.Drawing.Point(441, 16);
             this.btnCau4KP.Name = "btnCau4KP";
             this.btnCau4KP.Size = new System.Drawing.Size(75, 23);
             this.btnCau4KP.TabIndex = 1;
@@ -1543,7 +1543,7 @@
             // 
             // btnCau3KP
             // 
-            this.btnCau3KP.Location = new System.Drawing.Point(426, 16);
+            this.btnCau3KP.Location = new System.Drawing.Point(360, 16);
             this.btnCau3KP.Name = "btnCau3KP";
             this.btnCau3KP.Size = new System.Drawing.Size(75, 23);
             this.btnCau3KP.TabIndex = 1;
@@ -1553,7 +1553,7 @@
             // 
             // btnCau2KP
             // 
-            this.btnCau2KP.Location = new System.Drawing.Point(342, 16);
+            this.btnCau2KP.Location = new System.Drawing.Point(276, 16);
             this.btnCau2KP.Name = "btnCau2KP";
             this.btnCau2KP.Size = new System.Drawing.Size(75, 23);
             this.btnCau2KP.TabIndex = 1;
@@ -1573,7 +1573,7 @@
             // 
             // btnCau1KP
             // 
-            this.btnCau1KP.Location = new System.Drawing.Point(261, 16);
+            this.btnCau1KP.Location = new System.Drawing.Point(195, 16);
             this.btnCau1KP.Name = "btnCau1KP";
             this.btnCau1KP.Size = new System.Drawing.Size(75, 23);
             this.btnCau1KP.TabIndex = 1;
@@ -1615,6 +1615,16 @@
             this.tbToaSang.TabIndex = 4;
             this.tbToaSang.Text = "Tỏa Sáng";
             this.tbToaSang.UseVisualStyleBackColor = true;
+            // 
+            // btnLoadDanhSach
+            // 
+            this.btnLoadDanhSach.Location = new System.Drawing.Point(283, 23);
+            this.btnLoadDanhSach.Name = "btnLoadDanhSach";
+            this.btnLoadDanhSach.Size = new System.Drawing.Size(150, 42);
+            this.btnLoadDanhSach.TabIndex = 114;
+            this.btnLoadDanhSach.Text = "Giới thiệu về chủ đề của câu hỏi tiếp theo";
+            this.btnLoadDanhSach.UseVisualStyleBackColor = true;
+            this.btnLoadDanhSach.Click += new System.EventHandler(this.btnLoadDanhSach_Click);
             // 
             // btnNgoiSao
             // 
@@ -1682,11 +1692,11 @@
             // 
             // btnReady
             // 
-            this.btnReady.Location = new System.Drawing.Point(121, 33);
+            this.btnReady.Location = new System.Drawing.Point(121, 23);
             this.btnReady.Name = "btnReady";
-            this.btnReady.Size = new System.Drawing.Size(139, 23);
+            this.btnReady.Size = new System.Drawing.Size(139, 42);
             this.btnReady.TabIndex = 11;
-            this.btnReady.Text = "Hiển thị các câu hỏi";
+            this.btnReady.Text = "Hiển thị các câu hỏi ban đầu";
             this.btnReady.UseVisualStyleBackColor = true;
             this.btnReady.Click += new System.EventHandler(this.btnReady_Click);
             // 
@@ -1963,16 +1973,6 @@
             // 
             this.tmMain.Interval = 1000;
             this.tmMain.Tick += new System.EventHandler(this.tmMain_Tick);
-            // 
-            // btnLoadDanhSach
-            // 
-            this.btnLoadDanhSach.Location = new System.Drawing.Point(283, 23);
-            this.btnLoadDanhSach.Name = "btnLoadDanhSach";
-            this.btnLoadDanhSach.Size = new System.Drawing.Size(150, 42);
-            this.btnLoadDanhSach.TabIndex = 114;
-            this.btnLoadDanhSach.Text = "Giới thiệu về chủ đề của câu hỏi tiếp theo";
-            this.btnLoadDanhSach.UseVisualStyleBackColor = true;
-            this.btnLoadDanhSach.Click += new System.EventHandler(this.btnLoadDanhSach_Click);
             // 
             // TrinhDieuKhien
             // 
