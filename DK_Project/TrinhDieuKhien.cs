@@ -86,6 +86,7 @@ namespace DK_Project
             var dsdoi = _entity.ds_doi
                 .Where(x => x.vaitro == "TS" && x.cuocthiid == cuocThiHienTai.cuocthiid)
                 .OrderBy(x => x.vitridoi)
+                .ThenBy(x => x.doiid) // Thêm sắp xếp theo doiid để đảm bảo thứ tự ổn định
                 .ToList();
 
             // Tạo Dictionary chứa danh sách đội
@@ -93,6 +94,8 @@ namespace DK_Project
 
             foreach (var doi in dsdoi)
             {
+                _entity.Entry(doi).Reload(); // ⚠️ Nạp lại từ DB
+
                 teamplayings.Add(doi.doiid, $"TEAM {doi.vitridoi} - {doi.tennguoichoi} - {doi.tendoi}");
             }
 
@@ -1455,6 +1458,9 @@ namespace DK_Project
 
         private void btnTinhDiemVD_Click(object sender, EventArgs e)
         {
+            tmMain.Enabled = false;
+            time = 20;
+            lblThoiGian.Text = time.ToString();
             ds_diem diem_thisinh = new ds_diem();
             diem_thisinh.cuocthiid = cuocThiHienTai.cuocthiid;
             diem_thisinh.phanthiid = 4; //Về đích
