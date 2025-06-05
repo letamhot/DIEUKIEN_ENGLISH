@@ -2578,6 +2578,8 @@ namespace DK_Project
 
             if (diem != null)
             {
+                _entity.Entry(diem).Reload(); // ⚠️ Nạp lại từ DB
+
                 lblThoiGian.Text = diem.thoigiantraloi.ToString();
 
                 var chiTiet = _entity.ds_chitietdiem
@@ -2597,6 +2599,11 @@ namespace DK_Project
                     if (chiTiet.Count > 1) lblDiemGK2.Text = chiTiet[1].sodiem.ToString();
                     if (chiTiet.Count > 2) lblDiemGK3.Text = chiTiet[2].sodiem.ToString();
                 }
+            }
+            else
+            {
+                lblThoiGian.Text = "180";
+
             }
         }
 

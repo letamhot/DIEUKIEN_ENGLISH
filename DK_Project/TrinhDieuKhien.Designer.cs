@@ -347,6 +347,7 @@
             this.mnItemPhanThi.Name = "mnItemPhanThi";
             this.mnItemPhanThi.Size = new System.Drawing.Size(287, 22);
             this.mnItemPhanThi.Text = "Quản lý phần thi";
+            this.mnItemPhanThi.Visible = false;
             this.mnItemPhanThi.Click += new System.EventHandler(this.mnItemPhanThi_Click);
             // 
             // mnItemKhoiDong
@@ -661,9 +662,9 @@
             // 
             // btnCautraloi
             // 
-            this.btnCautraloi.Location = new System.Drawing.Point(155, 19);
+            this.btnCautraloi.Location = new System.Drawing.Point(155, 17);
             this.btnCautraloi.Name = "btnCautraloi";
-            this.btnCautraloi.Size = new System.Drawing.Size(116, 31);
+            this.btnCautraloi.Size = new System.Drawing.Size(116, 46);
             this.btnCautraloi.TabIndex = 4;
             this.btnCautraloi.Text = "Cập nhật câu trả lời";
             this.btnCautraloi.UseVisualStyleBackColor = true;
@@ -681,9 +682,9 @@
             // 
             // btnKetThucKD
             // 
-            this.btnKetThucKD.Location = new System.Drawing.Point(314, 19);
+            this.btnKetThucKD.Location = new System.Drawing.Point(314, 16);
             this.btnKetThucKD.Name = "btnKetThucKD";
-            this.btnKetThucKD.Size = new System.Drawing.Size(165, 31);
+            this.btnKetThucKD.Size = new System.Drawing.Size(165, 47);
             this.btnKetThucKD.TabIndex = 2;
             this.btnKetThucKD.Text = "Kết thúc câu và cập nhật điểm";
             this.btnKetThucKD.UseVisualStyleBackColor = true;
@@ -691,9 +692,9 @@
             // 
             // btnStartKD
             // 
-            this.btnStartKD.Location = new System.Drawing.Point(18, 19);
+            this.btnStartKD.Location = new System.Drawing.Point(23, 18);
             this.btnStartKD.Name = "btnStartKD";
-            this.btnStartKD.Size = new System.Drawing.Size(97, 31);
+            this.btnStartKD.Size = new System.Drawing.Size(97, 44);
             this.btnStartKD.TabIndex = 2;
             this.btnStartKD.Text = "Bắt đầu";
             this.btnStartKD.UseVisualStyleBackColor = true;
@@ -701,9 +702,9 @@
             // 
             // btnKDNext
             // 
-            this.btnKDNext.Location = new System.Drawing.Point(725, 86);
+            this.btnKDNext.Location = new System.Drawing.Point(725, 93);
             this.btnKDNext.Name = "btnKDNext";
-            this.btnKDNext.Size = new System.Drawing.Size(121, 32);
+            this.btnKDNext.Size = new System.Drawing.Size(121, 50);
             this.btnKDNext.TabIndex = 2;
             this.btnKDNext.Text = "Câu hỏi kế tiếp";
             this.btnKDNext.UseVisualStyleBackColor = true;
@@ -713,7 +714,7 @@
             // 
             this.cbxDungSai.AutoSize = true;
             this.cbxDungSai.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cbxDungSai.Location = new System.Drawing.Point(631, 89);
+            this.cbxDungSai.Location = new System.Drawing.Point(631, 101);
             this.cbxDungSai.Name = "cbxDungSai";
             this.cbxDungSai.Size = new System.Drawing.Size(83, 30);
             this.cbxDungSai.TabIndex = 1;
@@ -724,10 +725,10 @@
             // txtCauHoiChiTietKD
             // 
             this.txtCauHoiChiTietKD.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtCauHoiChiTietKD.Location = new System.Drawing.Point(18, 56);
+            this.txtCauHoiChiTietKD.Location = new System.Drawing.Point(18, 72);
             this.txtCauHoiChiTietKD.Multiline = true;
             this.txtCauHoiChiTietKD.Name = "txtCauHoiChiTietKD";
-            this.txtCauHoiChiTietKD.Size = new System.Drawing.Size(607, 171);
+            this.txtCauHoiChiTietKD.Size = new System.Drawing.Size(607, 173);
             this.txtCauHoiChiTietKD.TabIndex = 0;
             // 
             // groupBox3
